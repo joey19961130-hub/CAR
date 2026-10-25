@@ -133,12 +133,16 @@ a{color:var(--accent)}
         <div class="row"><label for="roof">後廂地板 → 車頂內襯<span class="est">估計</span></label><input type="number" id="roof" value="850" step="10"></div>
         <div class="row"><label for="fw">腳踏區地板高<span class="est">估計</span><small>比後廂地板低就填負數</small></label><input type="number" id="fw" value="-80" step="10"></div>
         <div class="row"><label for="sink">椅墊下陷<small>支撐壓在椅背上會陷多少</small></label><input type="number" id="sink" value="10" step="5"></div>
-        <p style="margin:0;font-size:13px;color:var(--muted)">量尺寸前，後座先滑到<b>最後面一格</b>（卡到底），之後每次都滑回這格。</p>
+        <div class="row"><label for="slideMax">後座滑軌可往前移<span class="est">估計</span><small>最後一格 → 最前一格</small></label><input type="number" id="slideMax" value="100" step="10"></div>
+        <div class="row"><label for="slide">後座目前位置<small>0 = 最後一格，看模型怎麼跟著動</small></label><input type="number" id="slide" value="0" step="10" min="0"></div>
+        <input type="range" id="slideR" min="0" max="100" step="5" value="0" aria-label="後座目前位置">
+        <p style="margin:0;font-size:13px;color:var(--muted)">後廂地板長和往前懸空長度，都要在後座滑到<b>最後一格</b>時量。</p>
       </fieldset>
       <fieldset><legend>塑鋁床板</legend>
         <div class="row"><label for="acp">塑鋁板厚度<small>越厚越硬，支撐可以越疏</small></label><select id="acp"><option value="3">3 mm</option><option value="4" selected>4 mm</option><option value="6">6 mm</option></select></div>
         <div class="row"><label for="folds">摺成幾片</label><select id="folds"><option value="3">3 摺</option><option value="4" selected>4 摺</option></select></div>
         <div class="row"><label for="mat">床墊厚</label><input type="number" id="mat" value="60" step="10"></div>
+        <div class="row"><label for="load">承重<small>兩人合計 kg</small></label><input type="number" id="load" value="150" step="10"></div>
       </fieldset>
       <fieldset id="fsBox"><legend>收納箱（方案 A）</legend>
         <div class="row"><label for="bL">外長<span class="est">估計</span></label><input type="number" id="bL" value="520" step="10"></div>
@@ -239,7 +243,8 @@ a{color:var(--accent)}
       <li>2016 年後的 RX300（第四代，台灣 2018 年款同代）：後廂常規深度 920～960 mm，後座放倒後最大深度 1840～1900 mm，寬 1100～1130 mm。來源：<a href="https://www.autohome.com.cn/3934/0/32/Section.html" target="_blank" rel="noopener">汽車之家 RX 後廂實測</a>。</li>
       <li>椅背放倒後比後廂地板高約 5 cm，呈斜坡。來源：同上，另見 <a href="https://auto.sina.cn/allnews/2017-07-17/detail-ifyiamif3122111.d.html" target="_blank" rel="noopener">新浪汽車 RX450h 實測</a>。</li>
       <li>椅背斜面長、車頂高、腳踏區高、收納箱和搬運籃的尺寸都是預設值，<b>要換成實測值</b>。</li>
-      <li>塑鋁板剛性只算兩層鋁皮（3 mm 用 0.21 mm 鋁皮，4 和 6 mm 用 0.3 mm 鋁皮，E = 70 GPa）。合格標準是 40 kg 膝蓋壓在兩支撐中間、還沒鋪床墊時，下沉不超過 5 mm。實際鋪上床墊會分散壓力，會更好。</li>
+      <li>塑鋁板剛性只算兩層鋁皮（3 mm 用 0.21 mm 鋁皮，4 和 6 mm 用 0.3 mm 鋁皮，E = 70 GPa）。合格標準是 40 kg 膝蓋壓在兩支撐中間，床墊把力量往兩側各攤開一個床墊厚度，下沉不超過 6 mm。承重以兩人合計 150 kg 計算。</li>
+      <li>後座可以前後滑動：平台分成後廂和椅背兩塊，椅背那塊跟著椅子移，中間的縫由床板跨過。床板總長是尾門到前座椅背，不受後座位置影響。滑軌行程 100 mm 是預設值，請實測。</li>
       <li>重量假設：9mm 合板約 5 kg/m²，高密度 EVA 約 0.15 g/cm³，2 cm 巧拼一片約 0.47 kg，塑鋁板 3、4、6 mm 分別約 3.6、4.9、6.8 kg/m²。</li>
       <li>EVA 格子梁長時間受壓、遇到高溫會慢慢變形。方案 C 請先買一小塊回來試壓再決定。</li>
     </ul>
@@ -252,7 +257,7 @@ a{color:var(--accent)}
 <script>
 (function(){
 const $=id=>document.getElementById(id);
-const NUM=['Lc','Ls','ang','step','ovh','W','roof','fw','sink','mat','bL','bW','bH','cL','cW','cH','tileT','evaT','budget','pAcp','pPly','pEva','pTile','pBox','pCrate','p20','p40','pF','shipF','hF','lenF','wF','kgF'];
+const NUM=['slideMax','slide','load','Lc','Ls','ang','step','ovh','W','roof','fw','sink','mat','bL','bW','bH','cL','cW','cH','tileT','evaT','budget','pAcp','pPly','pEva','pTile','pBox','pCrate','p20','p40','pF','shipF','hF','lenF','wF','kgF'];
 const SEL=['acp','folds','rail'];
 const DEF={};NUM.forEach(k=>DEF[k]=$(k).value);SEL.forEach(k=>DEF[k]=$(k).value);
 const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
@@ -271,16 +276,19 @@ function read(){const p={};NUM.forEach(k=>p[k]=parseFloat($(k).value)||0);SEL.fo
 /* ---------- 共用幾何 ---------- */
 function geom(p){
   const r=p.ang*Math.PI/180,t=Math.tan(r),run=p.Ls*Math.cos(r),top=p.step+p.Ls*Math.sin(r);
-  const hinge=p.Lc,xt=hinge+run,B0=10,A1=xt+p.ovh;
+  const sMax=Math.max(0,p.slideMax),s=Math.min(Math.max(0,p.slide),sMax);
+  const hinge=p.Lc+s,xt=hinge+run,B0=10,A1=p.Lc+run+p.ovh;
+  // 後廂模組尾端固定；椅背模組跟著椅子動，前端長度以椅子滑到最前面時為準
+  const Bend=p.Lc-5,Af=xt+Math.max(0,p.ovh-sMax);
   const surf=x=>x<hinge?0:(x<=xt?p.step+(x-hinge)*t:p.fw);
-  return{t,run,top,hinge,xt,B0,A1,surf,W:p.W};
+  return{t,run,top,hinge,xt,B0,A1,Bend,Af,s,sMax,surf,W:p.W};
 }
-/* 塑鋁板：兩層鋁皮的慣性矩，算 40 kg 膝蓋在跨距中間、有效寬度 = 跨距時的下沉 */
+/* 塑鋁板：兩層鋁皮的慣性矩。40 kg 膝蓋壓在兩支撐中間，床墊把力量往兩側各攤開一個床墊厚度 */
 const ACP={3:{skin:.21e-3,kg:3.6},4:{skin:.3e-3,kg:4.9},6:{skin:.3e-3,kg:6.8}};
 function acpEI(t){const s=ACP[t].skin,d=t/1000-s;return 70e9*2*s*(d/2)**2}
-const KNEE=400,DLIM=5;
-const acpDefl=(t,L)=>KNEE*(L/1000)**2/(48*acpEI(t))*1000;
-const acpMaxSpan=t=>Math.sqrt(DLIM/1000*48*acpEI(t)/KNEE)*1000;
+const KNEE=400,DLIM=6,CANT=150;
+const acpDefl=(t,L,m)=>KNEE*(L/1000)**3/(48*acpEI(t)*(L+2*m)/1000)*1000;
+function acpMaxSpan(t,m){let lo=50,hi=1500;for(let i=0;i<40;i++){const mid=(lo+hi)/2;if(acpDefl(t,mid,m)<=DLIM)lo=mid;else hi=mid}return lo}
 
 /* ---------- 床板 ---------- */
 function deck(p,g,H){
@@ -295,61 +303,61 @@ function deck(p,g,H){
 }
 
 /* ---------- 箱子排列 ---------- */
-function layout(len,W,L,Wd){
+function layout(len,W,L,Wd,lenNow){
+  lenNow=lenNow||len;
   const tryO=(a,b)=>{const nx=Math.floor(len/a),ny=Math.floor(W/b);return{nx,ny,a,b,n:nx*ny,cov:nx*a*ny*b}};
   const o1=tryO(L,Wd),o2=tryO(Wd,L);const o=(o2.n>o1.n||(o2.n===o1.n&&o2.cov>o1.cov))?o2:o1;
-  const gx=o.nx>1?(len-o.nx*o.a)/(o.nx-1):len-o.a, gy=o.ny>1?(W-o.ny*o.b)/(o.ny-1):W-o.b;
+  const gx=o.nx>1?(lenNow-o.nx*o.a)/(o.nx-1):0, gy=o.ny>1?(W-o.ny*o.b)/(o.ny-1):0;
   const cells=[];for(let i=0;i<o.nx;i++)for(let j=0;j<o.ny;j++)cells.push({x0:i*(o.a+gx),y0:j*(o.b+gy)-W/2,a:o.a,b:o.b});
-  return{...o,gx:o.nx>1?gx:0,gy:o.ny>1?gy:0,cells};
+  return{...o,gx,gy,cells};
 }
 
 /* ---------- 格子梁（肋板＋橫板，十字插接） ---------- */
-function egg(p,g,H,x0,th,mat,span){
+function egg(p,g,H,x0,x1,th,mat,span,pre){
   const nr=Math.max(3,Math.ceil((p.W-40)/span)+1);
   const ys=[...Array(nr)].map((_,i)=>-p.W/2+20+i*(p.W-40)/(nr-1));
-  const legs=p.frontLegs&&p.ovh>=80;
+  const cargo=x1<=g.hinge;
+  const legs=!cargo&&p.frontLegs&&x1-g.xt>=80;
   const ribs=ys.map((y,i)=>{
-    const outer=i===0||i===nr-1;const pts=[];
-    if(x0<g.hinge)pts.push([x0,0],[g.hinge,0],[g.hinge,p.step-p.sink]);else pts.push([x0,g.surf(x0)-p.sink]);
-    pts.push([g.xt,g.top-p.sink]);
-    if(outer&&legs)pts.push([g.A1-60,p.fw],[g.A1,p.fw]);else pts.push([g.A1,H-60]);
-    pts.push([g.A1,H],[x0,H]);
+    const outer=i===0||i===nr-1;let pts;
+    if(cargo)pts=[[x0,0],[x1,0],[x1,H],[x0,H]];
+    else{pts=[[x0,g.surf(x0)-p.sink],[g.xt,g.top-p.sink]];
+      if(outer&&legs)pts.push([x1-60,p.fw],[x1,p.fw]);else if(x1>g.xt+5)pts.push([x1,Math.max(g.top-p.sink,H-60)]);
+      pts.push([x1,H],[x0,H])}
     return{y,outer,pts};
   });
   const lowerZ=(pts,x)=>{let z=-1e9;const lo=pts.slice(0,-2);for(let i=0;i<lo.length-1;i++){const[a,b]=[lo[i],lo[i+1]];if(b[0]>a[0]&&x>=a[0]&&x<=b[0])z=Math.max(z,a[1]+(b[1]-a[1])*(x-a[0])/(b[0]-a[0]))}return z};
-  const spread=(a,b)=>{if(b-a<60)return[(a+b)/2];const n=Math.max(2,Math.ceil((b-a)/350)+1);return[...Array(n)].map((_,i)=>a+i*(b-a)/(n-1))};
-  let xs=[];
-  if(x0<g.hinge)xs.push(...spread(x0+30,g.hinge-30));
-  xs.push(...spread(Math.max(x0,g.hinge)+40,g.xt-40));
-  if(p.ovh>=80)xs.push(g.A1-30);
+  const spread=(a,b)=>{if(b-a<60)return[(a+b)/2];const n=Math.max(2,Math.ceil((b-a)/500)+1);return[...Array(n)].map((_,i)=>a+i*(b-a)/(n-1))};
+  const xs=cargo?spread(x0+30,x1-30):[...spread(x0+40,g.xt-40),...(x1-g.xt>=80?[x1-30]:[])];
   const slats=xs.map(x=>{const bot=Math.max(...ribs.map(r=>lowerZ(r.pts,x)));return{x,bot,h:H-bot}}).filter(s=>s.h>=40);
-  const sl=p.W-20,sy0=-p.W/2+10;
-  // 肋板分組（外側一組、內側一組）
+  const sl=p.W-20,sy0=-p.W/2+10,area0=pre?'後廂':'椅背';
   const items=[],solids=[];
-  const ribGroups=[ribs.filter(r=>r.outer),ribs.filter(r=>!r.outer)].filter(a=>a.length);
+  const ribGroups=cargo?[ribs]:[ribs.filter(r=>r.outer),ribs.filter(r=>!r.outer)].filter(a=>a.length);
   ribGroups.forEach((grp,gi)=>{
     const r=grp[0];const minx=Math.min(...r.pts.map(q=>q[0])),maxx=Math.max(...r.pts.map(q=>q[0])),minz=Math.min(...r.pts.map(q=>q[1]));
     const poly=r.pts.map(([x,z])=>[x-minx,H-z]);
     const slots=slats.map(s=>({at:s.x-minx,depth:s.h/2,from:'top'}));
-    items.push({code:'R'+(gi+1),mat,name:(r.outer?'外側肋板':'內側肋板')+(r.outer&&legs?'（含前腳）':''),w:mm(maxx-minx),h:mm(H-minz),qty:grp.length,poly,slots,th,
+    items.push({code:pre+'R'+(gi+1),mat,name:area0+(cargo?'肋板':(r.outer?'外側肋板':'內側肋板'))+(!cargo&&r.outer&&legs?'（含前腳）':''),w:mm(maxx-minx),h:mm(H-minz),qty:grp.length,poly,slots,th,
       note:`槽寬 ${th+0.5} mm，從上往下開，深度依序 ${slats.map(s=>mm(s.h/2)).join(' / ')} mm，位置距後端 ${slats.map(s=>mm(s.x-minx)).join(' / ')} mm`});
   });
   const sg={};slats.forEach(s=>{const k=mm(s.h);(sg[k]=sg[k]||[]).push(s)});
   Object.values(sg).sort((a,b)=>b[0].h-a[0].h).forEach((grp,gi)=>{
     const s=grp[0];
-    items.push({code:'S'+(gi+1),mat,name:'橫板',w:mm(sl),h:mm(s.h),qty:grp.length,th,slots:ys.map(y=>({at:y-sy0,depth:s.h/2,from:'bottom'})),
+    items.push({code:pre+'S'+(gi+1),mat,name:area0+'橫板',w:mm(sl),h:mm(s.h),qty:grp.length,th,slots:ys.map(y=>({at:y-sy0,depth:s.h/2,from:'bottom'})),
       note:`槽寬 ${th+0.5} mm，從下往上開 ${mm(s.h/2)} mm 深，位置距左端 ${ys.map(y=>mm(y-sy0)).join(' / ')} mm`});
   });
   ribs.forEach(r=>solids.push({k:'prism',m:mat,pts:r.pts,y:r.y,th}));
   slats.forEach(s=>solids.push({k:'box',m:mat,x0:s.x-th/2,x1:s.x+th/2,y0:sy0,y1:sy0+sl,z0:s.bot,z1:H}));
   const area=ribs.reduce((a,r)=>{let A=0;const q=r.pts;for(let i=0;i<q.length;i++){const j=(i+1)%q.length;A+=q[i][0]*q[j][1]-q[j][0]*q[i][1]}return a+Math.abs(A)/2},0)/1e6+slats.reduce((a,s)=>a+sl*s.h,0)/1e6;
-  return{ribs,slats,ys,items,solids,area,span:(p.W-40)/(nr-1),nSlots:ribs.length*slats.length,legs};
+  const foot=(ribs.reduce((a,r)=>a+(r.pts[1][0]-r.pts[0][0]),0)+slats.filter(s=>s.bot<=g.top).length*sl)*th/1e6;
+  return{ribs,slats,ys,items,solids,area,foot,span:(p.W-40)/(nr-1),nSlots:ribs.length*slats.length,legs};
 }
 
 /* ---------- 板材排版（貨架法） ---------- */
 const SHEETS={acp:{w:2440,h:1220,name:'塑鋁板 4×8 尺'},ply:{w:2440,h:1220,name:'9mm 合板 4×8 尺'},eva:{w:2000,h:1000,name:'EVA 板 1×2 m'}};
-function pack(items,mat){
-  const S=SHEETS[mat],K=6,pieces=[];
+const PLY36={w:1820,h:910,name:'9mm 合板 3×6 尺',small:true};
+function pack(items,mat,S){
+  S=S||SHEETS[mat];const K=6,pieces=[];
   items.filter(i=>i.mat===mat).forEach(it=>{for(let q=0;q<it.qty;q++){let w=it.w,h=it.h,rot=false;if(h>w&&!it.poly){[w,h]=[h,w];rot=true}pieces.push({it,w,h,rot})}});
   pieces.sort((a,b)=>b.h-a.h);
   const sheets=[];
@@ -361,6 +369,13 @@ function pack(items,mat){
     if(!placed){const sh={rows:[],list:[],y:0};sheets.push(sh);const fits=pc.w<=S.w&&pc.h<=S.h;sh.rows.push({y:0,h:pc.h,x:pc.w+K});sh.list.push({...pc,x:0,y:0,over:!fits});sh.y=pc.h+K}
   });
   return sheets;
+}
+/* 最後一張如果放得進 3×6 尺小張，就改買小張 */
+function sheetsFor(items,mat){
+  const sh=pack(items,mat).map(x=>({...x,S:SHEETS[mat]}));
+  if(mat==='ply'&&sh.length){const last=sh[sh.length-1];const sub=last.list.map(q=>({...q.it,qty:1}));const re=pack(sub,mat,PLY36);
+    if(re.length===1&&!re[0].list.some(q=>q.over))sh[sh.length-1]={...re[0],S:PLY36}}
+  return sh;
 }
 
 /* ---------- 方案 ---------- */
@@ -376,7 +391,7 @@ const FQ=['用什麼材料做的？總重多少？最重的一塊多重？','平
 const TBD='待確認';
 
 function build(key,p){
-  const g=geom(p),span=acpMaxSpan(+p.acp);
+  const g=geom(p),span=acpMaxSpan(+p.acp,p.mat);
   const o={key,g,solids:[],items:[],buy:[],checks:[],labels:[]};
   let H;
   if(key==='F'){
@@ -391,67 +406,69 @@ function build(key,p){
     return o;
   }
   if(key==='A'){
-    const tT=p.tileT,len=g.hinge-5-g.B0;
+    const tT=p.tileT,len=g.Bend-g.B0,lenNow=g.hinge-5-g.B0,lenMax=p.Lc+g.sMax-5-g.B0;
     const need=g.top+tT;let r=0;H=p.bH;if(H<need){r=Math.ceil((need-p.bH)/tT);H=p.bH+r*tT}
-    const lay=layout(len,p.W,p.bL,p.bW);
+    const lay=layout(len,p.W,p.bL,p.bW,lenNow);
     lay.cells.forEach(c=>o.solids.push({k:'box',m:'box',x0:g.B0+c.x0,x1:g.B0+c.x0+c.a,y0:c.y0,y1:c.y0+c.b,z0:0,z1:p.bH}));
     if(r)o.solids.push({k:'box',m:'eva',x0:g.B0,x1:g.hinge-5,y0:-p.W/2,y1:p.W/2,z0:p.bH,z1:H});
     const tilesPer=L=>Math.ceil(p.W/600)*Math.ceil(L/600);
-    let tiles=r*tilesPer(len);const layers=[];
+    let tiles=r*tilesPer(lenMax);const layers=[];
     const N=Math.floor((H-p.step)/tT);
     for(let k=0;k<N;k++){const zb=H-(k+1)*tT;const xe=Math.min(g.xt,g.hinge+(zb-p.step)/g.t);if(xe<=g.hinge+20)continue;
       layers.push({k:k+1,zb,len:xe-g.hinge-5});o.solids.push({k:'box',m:'eva',x0:g.hinge+5,x1:xe,y0:-p.W/2,y1:p.W/2,z0:zb,z1:zb+tT});tiles+=tilesPer(xe-g.hinge-5)}
     let col=null;
-    if(p.ovh>=80){const bx=Math.min(p.ovh-20,180),n=Math.ceil((H-p.fw)/tT);col={bx,n};
-      [-1,1].forEach(sg=>o.solids.push({k:'box',m:'eva',x0:g.A1-10-bx,x1:g.A1-10,y0:sg*(p.W/2-160)-150,y1:sg*(p.W/2-160)+150,z0:p.fw,z1:H}));
+    if(g.Af-g.xt>=80){const bx=Math.min(g.Af-g.xt-20,180),n=Math.ceil((H-p.fw)/tT);col={bx,n};
+      [-1,1].forEach(sg=>o.solids.push({k:'box',m:'eva',x0:g.Af-10-bx,x1:g.Af-10,y0:sg*(p.W/2-160)-150,y1:sg*(p.W/2-160)+150,z0:p.fw,z1:H}));
       tiles+=Math.ceil(2*n/(Math.floor(600/bx)*2))}
-    const gapSpan=Math.max(lay.gx,lay.gy);
+    const gMax=layout(len,p.W,p.bL,p.bW,lenMax);
     o.H=H;o.lay=lay;o.r=r;o.layers=layers;o.col=col;o.tiles=tiles;
     o.items.push({code:'T',mat:'tile',name:`巧拼 ${tT}mm 階梯`,w:600,h:600,qty:tiles,note:`椅背上共 ${layers.length} 層，由上往下每層長度 ${layers.map(l=>mm(l.len)).join(' / ')} mm（寬都是 ${p.W}）`+(r?`；收納箱上面再墊 ${r} 層`:'')+(col?`；前端柱子：裁成 ${col.bx}×300 小塊，每根疊 ${col.n} 層，共 2 根`:'')});
     o.buy.push([`收納箱 外尺寸約 ${p.bL}×${p.bW}×${p.bH}，硬蓋可坐`,lay.n,p.pBox,'掀蓋收納箱 耐重 可坐'],[`無毒巧拼 ${tT}mm 60×60`,tiles,p.pTile,`無毒巧拼 ${tT/10}cm 60x60 SGS`]);
     o.kg=lay.n*1.5+tiles*0.47*tT/20;
-    o.heaviest=Math.max(1.5,0);
-    o.span=gapSpan;
-    o.checks.push([lay.n>=2,`後廂可以排 ${lay.nx}×${lay.ny} = ${lay.n} 個收納箱，箱子之間最大縫 ${mm(gapSpan)} mm`],[r===0,r?`收納箱太矮，上面要墊 ${r} 層巧拼才會和椅背區同高`:`收納箱高度 ${p.bH} mm 夠高，不用墊`],[true,'收納箱的蓋子要夠硬，買之前先在店裡壓壓看']);
+    o.span=Math.max(gMax.gx,gMax.gy);o.adj='收納箱跟著後廂長度把間距拉開，巧拼階梯跟著椅子移';
+    o.checks.push([lay.n>=2,`後廂可以排 ${lay.nx}×${lay.ny} = ${lay.n} 個收納箱，每個約分到 ${mm(p.load/lay.n)} kg`],[r===0,r?`收納箱太矮，上面要墊 ${r} 層巧拼才會和椅背區同高`:`收納箱高度 ${p.bH} mm 夠高，不用墊`],[true,'收納箱的蓋子要夠硬，買之前先在店裡壓壓看']);
   }
   if(key==='B'||key==='C'){
     const th=key==='B'?9:p.evaT,mat=key==='B'?'ply':'eva';
     H=c5(g.top-p.sink+Math.max(40,th+20));
-    const e=egg(p,g,H,g.B0,th,mat,span);
-    o.H=H;o.egg=e;o.solids.push(...e.solids);o.items.push(...e.items);o.span=e.span;
+    const e1=egg(p,g,H,g.B0,g.Bend,th,mat,span,'H'),e=egg(p,g,H,g.hinge+5,g.Af,th,mat,span,'');
+    o.H=H;o.egg=e;o.egg1=e1;o.solids.push(...e1.solids,...e.solids);o.items.push(...e1.items,...e.items);
+    o.span=Math.max(e.span,g.sMax+10);o.adj='後廂格子固定不動，椅背格子跟著椅子移，中間的縫由床板跨過';
     const dens=key==='B'?5:p.evaT/1000*150;
-    o.kg=e.area*dens;
-    o.checks.push([true,`${e.ribs.length} 片肋板、${e.slats.length} 片橫板，共 ${e.nSlots} 個十字插接點`],[true,'肋板壓在椅背斜坡那一段，底部貼一條 2 cm 寬的 EVA 防滑條，保護椅墊也比較不會滑']);
-    if(key==='C')o.checks.push([false,'EVA 長期受壓和高溫會慢慢變形，先買一小塊回來，疊重物放幾天看看']);
+    o.kg=(e1.area+e.area)*dens;
+    o.checks.push([true,`後廂格子 ${e1.ribs.length} 片肋板＋${e1.slats.length} 片橫板；椅背格子 ${e.ribs.length} 片肋板＋${e.slats.length} 片橫板，共 ${e1.nSlots+e.nSlots} 個插接點`]);
+    if(key==='B')o.checks.push([true,`承重 ${p.load} kg：9mm 合板立著受壓，綽綽有餘`]);
+    else{const kpa=p.load*9.81/((e1.foot+e.foot)*1e6)*1000;o.checks.push([kpa<50,`承重 ${p.load} kg：EVA 底面平均受壓約 ${kpa.toFixed(1)} kPa，短時間沒問題，但長期和高溫會慢慢壓扁，先買一小塊試壓`])}
+    o.checks.push([true,'肋板壓在椅背斜坡那一段，底部貼一條 2 cm 寬的 EVA 防滑條，保護椅墊也比較不會滑']);
   }
   if(key==='D'){
-    const tT=p.tileT,len=g.hinge-5-g.B0;
+    const tT=p.tileT,len=g.Bend-g.B0,lenNow=g.hinge-5-g.B0,lenMax=p.Lc+g.sMax-5-g.B0;
     const need=g.top-p.sink+40;let r=0;H=p.cH;if(H<need){r=Math.ceil((need-p.cH)/tT);H=p.cH+r*tT}
-    const lay=layout(len,p.W,p.cL,p.cW);
+    const lay=layout(len,p.W,p.cL,p.cW,lenNow),gMax=layout(len,p.W,p.cL,p.cW,lenMax);
     lay.cells.forEach(c=>o.solids.push({k:'box',m:'crate',x0:g.B0+c.x0,x1:g.B0+c.x0+c.a,y0:c.y0,y1:c.y0+c.b,z0:0,z1:p.cH}));
-    let tiles=0;if(r){o.solids.push({k:'box',m:'eva',x0:g.B0,x1:g.hinge-5,y0:-p.W/2,y1:p.W/2,z0:p.cH,z1:H});tiles=r*Math.ceil(p.W/600)*Math.ceil(len/600)}
-    const e=egg(p,g,H,g.hinge+5,9,'ply',span);
+    let tiles=0;if(r){o.solids.push({k:'box',m:'eva',x0:g.B0,x1:g.hinge-5,y0:-p.W/2,y1:p.W/2,z0:p.cH,z1:H});tiles=r*Math.ceil(p.W/600)*Math.ceil(lenMax/600)}
+    const e=egg(p,g,H,g.hinge+5,g.Af,9,'ply',span,'');
     o.H=H;o.lay=lay;o.egg=e;o.r=r;o.solids.push(...e.solids);o.items.push(...e.items);
-    o.span=Math.max(e.span,lay.gx,lay.gy);
+    o.span=Math.max(e.span,gMax.gx,gMax.gy);o.adj='搬運籃跟著後廂長度把間距拉開，椅背格子跟著椅子移';
     if(tiles)o.items.push({code:'T',mat:'tile',name:`巧拼 ${tT}mm 墊高`,w:600,h:600,qty:tiles,note:`鋪在搬運籃上 ${r} 層`});
     o.buy.push([`塑膠搬運籃 外尺寸約 ${p.cL}×${p.cW}×${p.cH}`,lay.n,p.pCrate,'塑膠搬運籃 物流箱 耐重']);
     if(tiles)o.buy.push([`無毒巧拼 ${tT}mm 60×60`,tiles,p.pTile,`無毒巧拼 ${tT/10}cm 60x60 SGS`]);
     o.kg=lay.n*1.2+e.area*5+tiles*.47;
-    o.checks.push([lay.n>=2,`後廂可以排 ${lay.nx}×${lay.ny} = ${lay.n} 個搬運籃，籃子之間最大縫 ${mm(Math.max(lay.gx,lay.gy))} mm`],[r===0,r?`搬運籃太矮，上面要墊 ${r} 層巧拼`:`搬運籃高度 ${p.cH} mm 夠高，不用墊`],[true,'搬運籃倒過來放，底部是平的格子面，比開口朝上更好撐'],[true,`椅背區 ${e.ribs.length} 片肋板、${e.slats.length} 片橫板，共 ${e.nSlots} 個插接點`]);
+    o.checks.push([lay.n>=2,`後廂可以排 ${lay.nx}×${lay.ny} = ${lay.n} 個搬運籃，每個約分到 ${mm(p.load*0.6/lay.n)} kg（體重大約 6 成在後廂區）`],[r===0,r?`搬運籃太矮，上面要墊 ${r} 層巧拼`:`搬運籃高度 ${p.cH} mm 夠高，不用墊`],[true,'搬運籃倒過來放，底部是平的格子面，比開口朝上更好撐'],[true,`椅背格子 ${e.ribs.length} 片肋板、${e.slats.length} 片橫板，共 ${e.nSlots} 個插接點`]);
   }
   if(key==='E'){
     const RAIL=p.rail==='2040'?40:20,KG={'2020':.49,'2040':.86},FOOT=30,LEGMIN=30;
     const nr=Math.max(3,Math.ceil((p.W-20)/span)+1);
     const ys=[...Array(nr)].map((_,i)=>-p.W/2+10+i*(p.W-20)/(nr-1));
-    const B1=g.hinge-5,A0=g.hinge+5;
+    const B1=g.Bend,A0=g.hinge+5,AF=g.Af;
     const bx=[g.B0+30,B1-30],ax=[A0+45,g.xt-150];
     if(p.rail==='2020'){bx.splice(1,0,(bx[0]+bx[1])/2);ax.splice(1,0,(ax[0]+ax[1])/2)}
     const cbs=[...bx.map(x=>({x,mod:'B',h:20,ys})),...ax.map(x=>({x,mod:'A',h:20,ys}))];
-    if(p.frontLegs&&p.ovh>=80)cbs.push({x:g.A1-30,mod:'A',h:40,ys:[ys[0],ys[nr-1]],front:true});
+    if(p.frontLegs&&AF-g.xt>=80)cbs.push({x:AF-30,mod:'A',h:40,ys:[ys[0],ys[nr-1]],front:true});
     H=c5(Math.max(...cbs.map(cb=>g.surf(cb.x)+FOOT+LEGMIN+cb.h+RAIL),g.top+15+RAIL));
     cbs.forEach(cb=>{cb.s=g.surf(cb.x);const raw=H-RAIL-cb.h-FOOT-cb.s;cb.L=f5(raw);cb.foot=Math.round(FOOT+raw-cb.L)});
-    const LB=B1-g.B0,LA=g.A1-A0;
-    [[g.B0,B1],[A0,g.A1]].forEach(([x0,x1])=>ys.forEach(y=>o.solids.push({k:'box',m:'alu',x0,x1,y0:y-10,y1:y+10,z0:H-RAIL,z1:H})));
+    const LB=B1-g.B0,LA=AF-A0;
+    [[g.B0,B1],[A0,AF]].forEach(([x0,x1])=>ys.forEach(y=>o.solids.push({k:'box',m:'alu',x0,x1,y0:y-10,y1:y+10,z0:H-RAIL,z1:H})));
     let nLeg=0,nBr=0,len20=0,len40=0;
     len20+=p.rail==='2020'?nr*(LB+LA):0;len40+=p.rail==='2040'?nr*(LB+LA):0;
     cbs.forEach(cb=>{const tp=H-RAIL;o.solids.push({k:'box',m:'alu',x0:cb.x-10,x1:cb.x+10,y0:-p.W/2,y1:p.W/2,z0:tp-cb.h,z1:tp});
@@ -465,25 +482,26 @@ function build(key,p){
     Object.keys(legG).sort((a,b)=>b-a).forEach((L,i)=>o.items.push({code:'L'+(i+1),mat:'alu',name:'腳 2020（單端攻 M6）',w:+L,h:20,qty:legG[L]}));
     const sp=n=>Math.ceil(n*1.1);
     o.buy.push([`2020 鋁擠（裁切）共 ${(len20/1000).toFixed(2)} m`,1,len20/1000*p.p20,'2020 鋁擠型 裁切'],[`2040 鋁擠（裁切）共 ${(len40/1000).toFixed(2)} m`,1,len40/1000*p.p40,'2040 鋁擠型 裁切'],
-      ['20 系列 L 型角碼',sp(nBr),6,'2020 角碼 20系列'],['20 系列 後裝 T 型螺帽 M5',sp(nBr*2+8),1.5,'20系列 後裝 T型螺帽 M5'],['M5×10 內六角螺絲',sp(nBr*2+4),1,'M5x10 內六角 圓頭'],
-      ['M6 萬向腳杯 Ø40',nLeg,25,'M6 萬向腳杯'],['腳料攻 M6（店家加工）',nLeg,10,''],['一字連接板＋星型把手 M5',1,110,'20系列 一字連接板 星型把手 M5']);
+      ['20 系列 L 型角碼',sp(nBr),6,'2020 角碼 20系列'],['20 系列 後裝 T 型螺帽 M5',sp(nBr*2),1.5,'20系列 後裝 T型螺帽 M5'],['M5×10 內六角螺絲',sp(nBr*2),1,'M5x10 內六角 圓頭'],
+      ['M6 萬向腳杯 Ø40',nLeg,25,'M6 萬向腳杯'],['腳料攻 M6（店家加工）',nLeg,10,'']);
     o.kg=(nr*(LB+LA)/1000)*KG[p.rail]+(len20+len40-nr*(LB+LA))/1000*.5+nBr*.02+nLeg*.05;
-    o.span=(p.W-20)/(nr-1);o.H=H;o.cbs=cbs;o.nr=nr;
-    o.checks.push([true,`塑鋁板 ${p.acp}mm 需要 ${nr} 支主樑（間距 ${mm(o.span)} mm）`],[true,`共 ${nLeg} 支腳、約 ${sp(nBr)} 個角碼`]);
+    o.span=Math.max((p.W-20)/(nr-1),g.sMax+10);o.H=H;o.cbs=cbs;o.nr=nr;o.adj='兩塊鋁架不互相連接，椅背那塊跟著椅子移';
+    o.checks.push([true,`塑鋁板 ${p.acp}mm 需要 ${nr} 支主樑（間距 ${mm((p.W-20)/(nr-1))} mm）`],[true,`共 ${nLeg} 支腳、約 ${sp(nBr)} 個角碼`]);
   }
   const d=deck(p,g,o.H);
   o.deck=d;o.solids.push(...d.solids);o.items.push(...d.items);o.buy.unshift(...d.buy);
-  const plyN=pack(o.items,'ply').length,evaN=pack(o.items,'eva').length,acpN=pack(o.items,'acp').length;
+  const plyS=sheetsFor(o.items,'ply'),plyN=plyS.filter(x=>!x.S.small).length,ply36=plyS.length-plyN,evaN=pack(o.items,'eva').length,acpN=pack(o.items,'acp').length;
   o.buy[0][1]=acpN;
   if(plyN)o.buy.push([`9mm 合板 4×8 尺（請木材行代裁成條）`,plyN,p.pPly,'9mm 合板 4x8 椴木']);
+  if(ply36)o.buy.push([`9mm 合板 3×6 尺（請木材行代裁成條）`,ply36,Math.round(p.pPly*0.56),'9mm 合板 3x6 椴木']);
   if(evaN)o.buy.push([`高密度 EVA 板 ${p.evaT}mm 1×2 m`,evaN,p.pEva,`高密度EVA板 ${p.evaT}mm`]);
   if(key==='B'||key==='C'||key==='D')o.buy.push(['EVA 防滑條 2 cm 寬（貼肋板底）',1,100,'EVA 防滑條 背膠']);
   o.buy.push(['魔鬼氈束帶（開車時綁住）',1,100,'魔鬼氈束帶 綁帶']);
   o.cost=o.buy.reduce((a,b)=>a+b[1]*b[2],0);
   o.kg+=d.kg;
-  o.defl=acpDefl(+p.acp,o.span);
+  o.defl=acpDefl(+p.acp,o.span,p.mat);
   o.sleepTop=o.H+d.t+p.mat;o.head=p.roof-o.sleepTop;o.len=g.A1-g.B0;
-  o.checks.unshift([o.defl<=DLIM,`塑鋁板最大跨距 ${mm(o.span)} mm，膝蓋壓下去約下沉 ${o.defl.toFixed(1)} mm（標準 ≤ ${DLIM} mm）`]);
+  o.checks.unshift([o.defl<=DLIM,`塑鋁板最大跨距 ${mm(o.span)} mm，鋪 ${p.mat} mm 床墊後膝蓋壓下去約下沉 ${o.defl.toFixed(1)} mm（標準 ≤ ${DLIM} mm）`],[g.sMax<=o.span+1,`後座從最後一格往前滑 0～${g.sMax} mm 都能用：${o.adj}`],[g.sMax<=CANT,`後座在最後一格時，床板前端懸空 ${mm(g.sMax)} mm（建議 ≤ ${CANT} mm）`]);
   o.checks.push([o.cost<=p.budget,o.cost<=p.budget?`材料費 ${nt(o.cost)}，在預算 ${nt(p.budget)} 內`:`材料費 ${nt(o.cost)}，超出預算 ${nt(o.cost-p.budget)}`]);
   if(o.items.some(i=>i.mat!=='tile'&&i.mat!=='alu')&&[...['ply','eva','acp']].some(m=>pack(o.items,m).some(s=>s.list.some(q=>q.over))))o.checks.push([false,'有零件比整張板還大，請改尺寸或分段']);
   return o;
@@ -552,9 +570,9 @@ function cut(o,p){
     o.items.map(i=>`<tr><td class="mono">${i.code}</td><td>${mats[i.mat]}</td><td>${i.name}</td><td class="n">${i.mat==='tile'?'600 × 600':i.mat==='alu'?i.w:i.w+' × '+i.h}</td><td class="n">${i.qty}</td><td style="min-width:240px">${i.note||''}</td></tr>`).join('');
   const out=[];
   ['acp','ply','eva'].forEach(m=>{
-    const sh=pack(o.items,m);const S=SHEETS[m];
+    const sh=sheetsFor(o.items,m);
     sh.forEach((s,si)=>{
-      const sc=520/S.w;const fg=css('--ink'),mu=css('--muted'),col=css(MC[m]);
+      const S=s.S,sc=520/SHEETS[m].w;const fg=css('--ink'),mu=css('--muted'),col=css(MC[m]);
       let v=`<svg viewBox="-2 -2 ${S.w*sc+4} ${S.h*sc+4}" xmlns="http://www.w3.org/2000/svg" font-family="JetBrains Mono, monospace" font-size="10"><rect x="0" y="0" width="${S.w*sc}" height="${S.h*sc}" fill="none" stroke="${mu}" stroke-dasharray="4 3"/>`;
       s.list.forEach(q=>{
         const x=q.x*sc,y=q.y*sc;
@@ -579,7 +597,7 @@ function buy(o,p){
 function steps(o,p){
   const d=o.deck,k=o.key;
   const deckStep=['塑鋁床板',`請材料行把 ${d.t}mm 塑鋁板裁成 ${d.n} 片 ${p.W}×${mm(d.Lp)} mm，四角倒圓角。每條摺線用 3 個不鏽鋼薄合頁接起來，用 M4 螺絲加螺帽鎖穿板子（塑鋁板太薄，木螺絲咬不住）。合頁裝在床板底面，摺線兩兩交錯（第一條在底面、第二條在頂面），才能摺成手風琴狀。`];
-  const seat='後座滑到最後一格（卡到底），電動放倒到底；頭枕會頂到就先拔下來';
+  const seat=`後座滑到想要的位置（最後一格往前 0～${o.g.sMax} mm 都可以），電動放倒到底；頭枕會頂到就先拔下來`;
   const front='前座往前推到底，椅背調直';
   let B=[],I=[],R=[];
   if(k==='A'){
@@ -593,13 +611,15 @@ function steps(o,p){
   if(k==='B'||k==='C'||k==='D'){
     const e=o.egg,mat=k==='C'?`${p.evaT}mm EVA 板`:'9mm 合板',tool=k==='C'?'美工刀（多換幾次刀片）或線鋸':'線鋸';
     B=[...(k==='D'?[['確認搬運籃高度',`搬運籃倒過來放，外高要約 ${p.cH} mm${o.r?`，比較矮，上面要墊 ${o.r} 層巧拼`:''}。`]]:[]),
-      ['畫線',`在 ${mat}上照排版圖畫出 ${e.ribs.length} 片肋板和 ${e.slats.length} 片橫板。肋板底部的斜線照椅背的 ${p.ang}° 畫，最簡單的做法是先剪一張紙板樣板，放進車裡比對後再描。`],
+      ['畫線',`在 ${mat}上照排版圖畫線：${k==='D'?'':`後廂格子 ${o.egg1.ribs.length} 片肋板、${o.egg1.slats.length} 片橫板；`}椅背格子 ${e.ribs.length} 片肋板、${e.slats.length} 片橫板。肋板底部的斜線照椅背的 ${p.ang}° 畫，最簡單的做法是先剪一張紙板樣板，放進車裡比對後再描。`],
       ['切外型',`用${tool}沿線切。肋板前端${e.legs?'外側兩片有一支腳落到腳踏區':'是懸空的'}。`],
       ['開十字槽',`槽寬 ${k==='C'?p.evaT-1:9.5} mm${k==='C'?'（EVA 會壓縮，比厚度小 1 mm 才夾得緊）':''}。肋板從上往下開，橫板從下往上開，深度都是那個位置高度的一半，詳細尺寸看裁切清單。`],
       ['修邊、貼防滑條',`切口用砂紙磨過。肋板壓在椅背斜坡那一段，底部貼 2 cm 寬的 EVA 防滑條。`],
       deckStep,['試裝調整','先在車外插起來，確認上緣平整再放進車裡。哪一片太高就用砂紙磨低。']];
     I=[seat,front,...(k==='D'?[`搬運籃倒過來，排進後廂（${o.lay.nx}×${o.lay.ny}）`+(o.r?`，上面鋪 ${o.r} 層巧拼`:'')]:[]),
-      `肋板立在${k==='D'?'椅背上':'後廂和椅背上'}，外側兩片放最外面`+(e.legs?'，前腳落進腳踏區':''),'橫板從上往下插進肋板的槽裡，插到底','攤開塑鋁床板，前後對齊','鋪床墊'];
+      ...(k==='D'?[]:['後廂格子：肋板立在後廂地板上，橫板從上往下插到底，整組推到尾門邊']),
+      `椅背格子：肋板立在椅背上，外側兩片放最外面`+(e.legs?'，前腳落進腳踏區':'')+'，橫板插到底，整組往後推到貼近椅背折點',
+      '攤開塑鋁床板，後端對齊尾門','鋪床墊'];
     R=['收床墊','摺起塑鋁床板','橫板往上拔出，肋板放倒疊平',...(k==='D'?['取出搬運籃（拆下的板子可以放進籃子裡）']:[]),'後座立回、頭枕裝回、前座推回原位'];
   }
   if(k==='E'){
@@ -608,10 +628,10 @@ function steps(o,p){
       ['腳裝腳杯','腳杯鎖進 M6 孔，先露出 30 mm，套上薄螺帽不要鎖緊。'],
       ['組橫樑＋腳',`每支橫樑下方，在 ${o.nr} 支主樑的位置各裝一支腳，每支腳前後各 1 個角碼。`+(fr?`前橫樑是 2040 立著放，只在兩端裝腳（${fr.L} mm）。`:'')],
       ['主樑放上橫樑',`${o.nr} 支主樑平均分布在寬度上，壓在腳的正上方，每個交叉點左右各 1 個角碼。`],
-      ['量對角線、裝連接板','對角線相差 2 mm 以內。外側兩支主樑用一字連接板加星型把手接起 A、B 兩塊。'],
+      ['量對角線','兩塊框架各自量對角線，相差 2 mm 以內。A、B 兩塊不互相連接，椅背那塊才能跟著椅子前後移。'],
       deckStep,['進車調水平','手機水平儀放在主樑上調到 0°，鎖緊腳杯螺帽並畫線做記號。']];
-    I=[seat,front,'模組 A 先從尾門放進去，推到椅背上','模組 B 從尾門推進去，對準連接板','鎖上星型把手','攤開塑鋁床板','鋪床墊'];
-    R=['收床墊','摺起塑鋁床板','鬆開星型把手','先拉出 B，再拉出 A','後座立回、頭枕裝回、前座推回原位'];
+    I=[seat,front,'模組 A 先從尾門放進去，推到椅背上、貼近折點','模組 B 從尾門推進去，貼著尾門邊','攤開塑鋁床板，後端對齊尾門','鋪床墊'];
+    R=['收床墊','摺起塑鋁床板','先拉出 B，再拉出 A','後座立回、頭枕裝回、前座推回原位'];
   }
   if(k==='F'){
     B=[['下單前先問賣家',FQ.join(' ')],['拿到尺寸後填進左邊','平台高、可睡長寬和總重填進「市售套件」欄位，比較表就能跟 A～E 公平比較。'],['收到貨先在車外組一次','照賣家說明清點零件，確認沒有缺件或運送損傷。'],['進車試裝','照賣家說明安裝，用手機水平儀檢查前後左右是否水平，兩個人一起躺上去試睡。']];
@@ -692,6 +712,7 @@ function legend(k){
   $('legend').innerHTML=L.map(([c,t])=>`<span><i style="background:var(${c})"></i>${t}</span>`).join('');
 }
 function update(){
+  const sm=Math.max(0,+$('slideMax').value||0);$('slideR').max=sm;if(+$('slide').value>sm)$('slide').value=sm;$('slideR').value=$('slide').value;
   const p=read();
   store.set(KEY,{...p,opt:current});
   $('fsBox').hidden=current!=='A';$('fsCrate').hidden=current!=='D';$('fsAlu').hidden=current!=='E';$('fsF').hidden=current!=='F';
@@ -702,6 +723,7 @@ function update(){
   $('optDesc').textContent=OPTS[current].desc+' 拖曳可以旋轉，滾輪或雙指可以縮放。';
   readouts(o,p);side(o,p);cut(o,p);buy(o,p);steps(o,p);draw3d(o,p);
 }
+$('slideR').addEventListener('input',e=>{e.stopPropagation();$('slide').value=e.target.value;update()});
 $('params').addEventListener('input',update);
 $('params').addEventListener('change',update);
 $('reset').onclick=()=>{NUM.forEach(k=>$(k).value=DEF[k]);SEL.forEach(k=>$(k).value=DEF[k]);$('frontLegs').checked=true;update()};
