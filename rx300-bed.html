@@ -88,7 +88,7 @@ a{color:var(--accent)}
 <header>
   <div class="tag">Lexus RX300 · 2018 · 第四代 AL20</div>
   <h1>RX300 鋁擠車床</h1>
-  <p>這張平台分成兩塊模組：後廂一塊、椅背一塊，各約 10 kg，進車後用 4 顆手轉螺絲接起來，大約 5 分鐘裝好。平台會架在 15° 的椅背斜面上，頂面完全水平，後廂那塊底下還能放收納箱。左邊改成你實際量到的尺寸，模型、裁切清單和下單文字會跟著重算。</p>
+  <p>這張平台分成兩塊模組：後廂一塊、椅背一塊，各約 11～12 kg，寬 108 cm 可睡 2 人，進車後用 4 顆手轉螺絲接起來，大約 5 分鐘裝好。平台會架在 15° 的椅背斜面上，頂面完全水平，後廂那塊底下還能放收納箱。左邊改成你實際量到的尺寸，模型、裁切清單和下單文字會跟著重算。</p>
 </header>
 
 <section>
@@ -98,17 +98,17 @@ a{color:var(--accent)}
     <form class="panel params" id="params" onsubmit="return false">
       <fieldset><legend>車內實測（mm）</legend>
         <div class="row"><label for="Lc">後廂地板長<small>尾門內緣 → 椅背折點</small></label><input type="number" id="Lc" value="960" step="5"></div>
-        <div class="row"><label for="Ls">椅背放倒後斜面長<small>折點 → 椅背頂端，沿斜面量</small></label><input type="number" id="Ls" value="700" step="5"></div>
+        <div class="row"><label for="Ls">椅背放倒後斜面長<span class="est">估計</span><small>折點 → 椅背頂端，沿斜面量</small></label><input type="number" id="Ls" value="700" step="5"></div>
         <div class="row"><label for="ang">椅背斜角（°）<small>你量的是 15°</small></label><input type="number" id="ang" value="15" step="0.5"></div>
         <div class="row"><label for="step">折點台階高<small>椅背起點比地板高多少</small></label><input type="number" id="step" value="50" step="5"></div>
         <div class="row"><label for="ovh">往前懸空長度<small>椅背頂端 → 前座椅背（前座推到前面後）</small></label><input type="number" id="ovh" value="200" step="10"></div>
-        <div class="row"><label for="W">平台寬<small>比輪拱間最窄處少 30～50</small></label><input type="number" id="W" value="1000" step="10"></div>
-        <div class="row"><label for="roof">後廂地板 → 車頂內襯<small>平台中段位置量</small></label><input type="number" id="roof" value="850" step="10"></div>
+        <div class="row"><label for="W">平台寬<span class="est">估計</span><small>2 人睡用最大值：輪拱間最窄處 − 30</small></label><input type="number" id="W" value="1080" step="10"></div>
+        <div class="row"><label for="roof">後廂地板 → 車頂內襯<span class="est">估計</span><small>平台中段位置量</small></label><input type="number" id="roof" value="850" step="10"></div>
       </fieldset>
       <fieldset><legend>結構選項</legend>
         <div class="row"><label for="back">前橫樑離椅背頂端<small>越往後平台越低，懸空越長</small></label><input type="number" id="back" value="150" step="10"></div>
-        <label class="chk"><input type="checkbox" id="frontLegs" checked><span>前端加 3 支腳落到後座腳踏區（建議開，坐在床尾不會翹）</span></label>
-        <div class="row" id="fwRow"><label for="fw">腳踏區地板高<small>比後廂地板低就填負數</small></label><input type="number" id="fw" value="-80" step="10"></div>
+        <label class="chk"><input type="checkbox" id="frontLegs" checked><span>前端左右各加 1 支腳落到後座腳踏區，中間不放腳（避開地板隆起），前橫樑改用 2040。建議打開，坐在床尾才不會翹。</span></label>
+        <div class="row" id="fwRow"><label for="fw">腳踏區地板高<span class="est">估計</span><small>比後廂地板低就填負數</small></label><input type="number" id="fw" value="-80" step="10"></div>
         <div class="row"><label for="board">床板</label><select id="board">
           <option value="0.50|12">12mm 椴木合板</option>
           <option value="0.45|12">12mm 楊木合板</option>
@@ -116,6 +116,15 @@ a{color:var(--accent)}
           <option value="honey|10">10mm 鋁蜂巢板</option>
         </select></div>
         <div class="row"><label for="mat">床墊厚</label><input type="number" id="mat" value="60" step="10"></div>
+        <p style="margin:0;font-size:13px;color:var(--muted)">後座可以前後滑動：量尺寸前先滑到<b>最後面一格</b>（卡到底，每次都能回到同一位置，前面腳踏區也最寬），之後每次都滑回這格。</p>
+      </fieldset>
+      <fieldset><legend>主樑與價格（NT$ / 公尺）</legend>
+        <div class="row"><label for="rail">主樑</label><select id="rail">
+          <option value="2040">2040（腳少，組得快）</option>
+          <option value="2020">2020（每塊多一排腳）</option>
+        </select></div>
+        <div class="row"><label for="p20">2020 每公尺<small>你的報價：40 cm 64 元</small></label><input type="number" id="p20" value="160" step="5"></div>
+        <div class="row"><label for="p40">2040 每公尺<span class="est">估計</span><small>請向同一家問價</small></label><input type="number" id="p40" value="320" step="5"></div>
       </fieldset>
       <button type="button" id="reset">恢復預設值</button>
     </form>
@@ -129,7 +138,7 @@ a{color:var(--accent)}
         <button type="button" id="tSide">側視</button>
         <button type="button" id="tIso">斜視</button>
       </div>
-      <div class="legend"><span><i style="background:var(--alu)"></i>2040 主樑 / 2020 橫樑與腳</span><span><i style="background:var(--accent)"></i>模組 B 後廂</span><span><i style="background:var(--warn)"></i>模組 A 椅背</span><span><i style="background:var(--wood)"></i>床板</span></div>
+      <div class="legend"><span><i style="background:var(--alu)"></i>鋁擠（主樑、橫樑、腳）</span><span><i style="background:var(--accent)"></i>模組 B 後廂</span><span><i style="background:var(--warn)"></i>模組 A 椅背</span><span><i style="background:var(--wood)"></i>床板</span></div>
       <div class="readouts" id="readouts"></div>
     </div>
   </div>
@@ -156,14 +165,26 @@ a{color:var(--accent)}
     <ol class="steps">
       <li><div><h3>先量 7 個數字，填進上面的表</h3><p>最重要的是後廂地板長、椅背斜面長、輪拱間寬度和車頂高。量的時候把後座電動放倒到底，前座往前推、椅背調直。</p></div></li>
       <li><div><h3>鋁擠型：蝦皮或露天搜尋「2040 鋁擠型 裁切」</h3><p>選有提供「依尺寸裁切」和「攻牙」服務的店。把右邊的下單文字複製貼到訂單備註或聊聊，請店家報價。腳料要註明「單端中心孔擴孔攻 M6」，因為 2020 原本的中心孔只能攻 M5。若店家不能攻 M6，改買 M5 牙的腳杯也可以。</p></div></li>
-      <li><div><h3>五金在同一家加購</h3><p>角碼、後裝式 T 型螺帽、螺絲都選「20 系列」。T 型螺帽買後裝式（彈片或船型），組好框架後還能從槽口塞進去，不用重拆。</p></div></li>
-      <li><div><h3>床板請木材行代裁</h3><p>給尺寸請木材行裁切並倒圓角 R30，圓角能避免刮傷內裝。邊緣用砂紙磨過，有餘力可以包地毯布或貼止滑墊。</p></div></li>
+      <li><div><h3>五金買蝦皮散裝包最便宜</h3><p>角碼、後裝式 T 型螺帽、螺絲買 50 入或 100 入的散裝包，通常比在鋁擠店單顆加購便宜很多。一定要選「20 系列、槽寬 6 mm」。T 型螺帽買後裝式（彈片或船型），組好框架後還能從槽口塞進去。</p></div></li>
+      <li><div><h3>床板：一張 4×8 尺合板就夠</h3><p>一張 1220×2440 mm 的合板可以裁出兩塊床板，請木材行代裁並倒圓角 R30，圓角能避免刮傷內裝。邊緣用砂紙磨過，有餘力可以包地毯布或貼止滑墊。</p></div></li>
       <li><div><h3>床墊請泡棉行代裁 2 片</h3><p>尺寸跟兩塊床板相同，模組 A 和 B 各一片，收納時可以分開疊放。</p></div></li>
     </ol>
+    <div style="display:flex;flex-direction:column;gap:16px;min-width:0">
+    <div class="panel">
+      <h3>省錢重點</h3>
+      <ul style="margin:8px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:4px;font-size:14px">
+        <li>選銀色，黑色陽極通常比較貴。</li>
+        <li>不用加「端面銑平」：主樑是壓在橫樑上面，不是端面對接，一般裁切面就夠了。</li>
+        <li>3030 用不到：每公尺 250 元比 2020 貴，強度也用不上。</li>
+        <li>腳的 M6 攻牙如果加價太多，改買 M5 牙的腳杯。2020 原本的中心孔就能攻 M5，通常比較便宜。</li>
+        <li>主樑選 2040 還是 2020，看上面的總價比較；結果會顯示在模型下方。</li>
+      </ul>
+    </div>
     <div class="panel">
       <h3>下單文字（貼給鋁擠店）</h3>
       <pre id="orderText"></pre>
       <div class="copyrow"><button type="button" id="copyOrder">複製下單文字</button><span id="copyMsg" class="mono" style="font-size:13px;color:var(--muted)"></span></div>
+    </div>
     </div>
   </div>
 </section>
@@ -193,7 +214,7 @@ a{color:var(--accent)}
       <li>後座放倒後容積 1,592 L、60:40 分離式。來源：<a href="https://www.scribd.com/document/392870953/2018LexusRX%E5%9E%8B%E9%8C%84" target="_blank" rel="noopener">2018 Lexus RX 台灣型錄</a>。</li>
       <li>椅背斜面長 700 mm 是用「最大深度 − 常規深度」推估的；車頂高 850 mm、腳踏區高度 −80 mm 都是猜的，<b>一定要自己量</b>。</li>
       <li>鋁擠重量以常見 20 系列計算：2020 約 0.49 kg/m、2040 約 0.86 kg/m。主樑下沉以 80 kg 人體、中樑分擔一半、2040 慣性矩約 4.5 cm⁴ 估算，實際以店家型錄為準。</li>
-      <li>價格是 2026 年台灣網拍的大略行情，以店家報價為準。</li>
+      <li>2020 單價用你提供的報價（40 cm 64 元，換算每公尺 160 元，假設已含裁切）；2040、五金、攻牙和合板的單價是 2026 年台灣網拍的大略行情，以店家報價為準。</li>
     </ul>
   </div>
 </section>
@@ -204,111 +225,131 @@ a{color:var(--accent)}
 <script>
 (function(){
 const $=id=>document.getElementById(id);
-const IDS=['Lc','Ls','ang','step','ovh','W','roof','back','fw','mat'];
+const IDS=['Lc','Ls','ang','step','ovh','W','roof','back','fw','mat','p20','p40'];
+const SELS=['board','rail'];
 const DEF={};IDS.forEach(k=>DEF[k]=$(k).value);
 const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 const store={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const KEY='rxbed-params-v2';
+const saved=store.get(KEY);
+if(saved){IDS.forEach(k=>{if(saved[k]!=null)$(k).value=saved[k]});if(saved.frontLegs!=null)$('frontLegs').checked=saved.frontLegs;SELS.forEach(k=>{if(saved[k])$(k).value=saved[k]})}
 
-const saved=store.get('rxbed-params');
-if(saved){IDS.forEach(k=>{if(saved[k]!=null)$(k).value=saved[k]});if(saved.frontLegs!=null)$('frontLegs').checked=saved.frontLegs;if(saved.board)$('board').value=saved.board}
-
-const RAIL=40,CB=20,LEGMIN=30,FOOT=30,GAP_T=10,GAP_J=5;
+const LEGMIN=30,FOOT=30,GAP_T=10,GAP_J=5;
+const KGM={'2020':0.49,'2040':0.86}, IX={'2020':0.69e-8,'2040':4.5e-8}, E=69e9, P=0.5*80*9.81;
+// 估計單價（NT$）
+const UP={bracket:6,tnut:1.5,m5:1,m5cs:1.5,foot:25,nut:1,plate:15,knob:25,tap:10,strap:150,felt:80};
+const SHEET={'0.50|12':['12mm 椴木合板 4×8 尺',1300],'0.45|12':['12mm 楊木合板 4×8 尺',900],'0.30|15':['15mm 桐木拼板 4×8 尺',1800],'honey|10':['10mm 鋁蜂巢板',4000]};
 const f5=v=>Math.floor(v/5)*5, c5=v=>Math.ceil(v/5)*5;
+const nt=v=>'NT$'+Math.round(v).toLocaleString();
 
-function read(){const p={};IDS.forEach(k=>p[k]=parseFloat($(k).value)||0);p.frontLegs=$('frontLegs').checked;p.board=$('board').value;return p}
+function read(){const p={};IDS.forEach(k=>p[k]=parseFloat($(k).value)||0);p.frontLegs=$('frontLegs').checked;SELS.forEach(k=>p[k]=$(k).value);return p}
 
 function calc(p){
-  const r=p.ang*Math.PI/180, t=Math.tan(r);
-  const run=p.Ls*Math.cos(r), top=p.step+p.Ls*Math.sin(r);
-  const hinge=p.Lc;
+  const RAIL=p.rail==='2040'?40:20;
+  const r=p.ang*Math.PI/180,t=Math.tan(r);
+  const run=p.Ls*Math.cos(r),top=p.step+p.Ls*Math.sin(r),hinge=p.Lc;
   const surf=x=>x<hinge?0:(x<=hinge+run?p.step+(x-hinge)*t:p.fw);
   const B0=GAP_T,B1=hinge-GAP_J,A0=hinge+GAP_J,A1=hinge+run+p.ovh;
-  const xB=[B0+30,B1-30];
+  const yAll=[-p.W/2+10,0,p.W/2-10],ySide=[yAll[0],yAll[2]];
   const back=Math.min(Math.max(p.back,40),run-80);
-  const xA=[A0+45,hinge+run-back];
-  if(p.frontLegs)xA.push(A1-30);
-  const need=x=>surf(x)+FOOT+LEGMIN+CB+RAIL;
-  let H=Math.max(need(xA[1]),need(xB[0]),top+15+CB+RAIL);
-  H=c5(H);
-  const mkLeg=(x,mod)=>{const s=surf(x);const raw=H-RAIL-CB-FOOT-s;const L=f5(raw);return{x,mod,s,L,foot:Math.round(FOOT+raw-L)}};
-  const crossbars=[...xB.map(x=>mkLeg(x,'B')),...xA.map(x=>mkLeg(x,'A'))];
-  const railY=[-p.W/2+10,0,p.W/2-10];
+  const bx=[B0+30,B1-30],ax=[A0+45,hinge+run-back];
+  if(p.rail==='2020'){bx.splice(1,0,(bx[0]+bx[1])/2);ax.splice(1,0,(ax[0]+ax[1])/2)}
+  const cbs=[...bx.map(x=>({x,mod:'B',h:20,type:'2020',ys:yAll})),...ax.map(x=>({x,mod:'A',h:20,type:'2020',ys:yAll}))];
+  if(p.frontLegs)cbs.push({x:A1-30,mod:'A',h:40,type:'2040',ys:ySide,front:true});
+  let H=c5(Math.max(...cbs.map(cb=>surf(cb.x)+FOOT+LEGMIN+cb.h+RAIL),top+15+RAIL));
+  cbs.forEach(cb=>{cb.s=surf(cb.x);const raw=H-RAIL-cb.h-FOOT-cb.s;cb.L=f5(raw);cb.foot=Math.round(FOOT+raw-cb.L)});
   const LB=B1-B0,LA=A1-A0;
-  // weights
-  const nCB=crossbars.length, nLeg=nCB*3;
-  const legTotal=crossbars.reduce((a,c)=>a+c.L*3,0);
-  const alu=(3*(LB+LA)/1000)*0.86+(nCB*p.W/1000)*0.49+(legTotal/1000)*0.49;
-  const nBr=nCB*3*2+nLeg*2;
-  const hw=nBr*0.02+nLeg*0.05+0.3;
+  const mods={B:{len:LB},A:{len:LA}};
+  let nLeg=0,nBr=0,len20=0,len40=0;
+  ['B','A'].forEach(m=>{
+    const list=cbs.filter(c=>c.mod===m);const md=mods[m];
+    md.alu=3*md.len/1000*KGM[p.rail];
+    if(p.rail==='2020')len20+=3*md.len;else len40+=3*md.len;
+    md.br=0;
+    list.forEach(cb=>{md.alu+=p.W/1000*KGM[cb.type]+cb.L*cb.ys.length/1000*KGM['2020'];
+      if(cb.type==='2020')len20+=p.W;else len40+=p.W;len20+=cb.L*cb.ys.length;
+      nLeg+=cb.ys.length;md.br+=3*2+cb.ys.length*2});
+    nBr+=md.br;
+  });
   const [dens,thk]=p.board.split('|');
-  const area=(LB*p.W+LA*p.W)/1e6;
-  const boardKg=dens==='honey'?area*3.5:area*(+thk/1000)*(+dens)*1000;
-  const total=alu+hw+boardKg;
-  const modB=(3*LB/1000*0.86+2*p.W/1000*0.49+crossbars.filter(c=>c.mod==='B').reduce((a,c)=>a+c.L*3,0)/1000*0.49)+hw*0.45+LB*p.W/1e6*(boardKg/area);
-  const modA=total-modB;
-  // deflection, 2040 center rail, simple span between crossbars
-  const E=69e9,I=4.5e-8,P=0.5*80*9.81;
-  const spanB=(xB[1]-xB[0])/1000,spanA=(xA[1]-xA[0])/1000;
-  const span=Math.max(spanB,p.frontLegs?Math.max(spanA,(xA[2]-xA[1])/1000):spanA);
-  const defl=P*span**3/(48*E*I)*1000;
-  const cant=p.frontLegs?0:(A1-xA[1])/1000;
+  const kgm2=dens==='honey'?3.5:(+thk/1000)*(+dens)*1000;
+  ['B','A'].forEach(m=>{const md=mods[m];md.kg=md.alu+md.br*0.02+cbs.filter(c=>c.mod===m).reduce((a,c)=>a+c.ys.length*0.05,0)+0.15+md.len*p.W/1e6*kgm2});
+  const total=mods.A.kg+mods.B.kg;
+  // 下沉：主樑（中樑分擔一半體重）、前橫樑、懸臂
+  let defl=0;
+  ['B','A'].forEach(m=>{const xs=cbs.filter(c=>c.mod===m).map(c=>c.x).sort((a,b)=>a-b);for(let i=1;i<xs.length;i++){const L=(xs[i]-xs[i-1])/1000;defl=Math.max(defl,P*L**3/(48*E*IX[p.rail])*1000)}});
+  if(p.frontLegs){const L=(p.W-20)/1000;defl=Math.max(defl,P*L**3/(48*E*IX['2040'])*1000)}
+  else{const xs=cbs.filter(c=>c.mod==='A').map(c=>c.x);const L=(A1-Math.max(...xs))/1000;defl=Math.max(defl,P*L**3/(3*E*IX[p.rail])*1000)}
+  // 費用
+  const sp=n=>Math.ceil(n*1.1);
+  const tn=nBr*2+12+8;
+  const sheets=(p.W<=1220&&LB+LA<=2440)?1:2;
+  const hw=[
+    ['20 系列 L 型角碼（2020 角碼）',sp(nBr),UP.bracket,'橫樑↔主樑、腳↔橫樑，每處 2 個'],
+    ['20 系列 後裝式 T 型螺帽 M5',sp(tn),UP.tnut,'彈片式或船型，含床板與連接板用量'],
+    ['M5×10 內六角圓頭螺絲',sp(nBr*2+4),UP.m5,'鎖角碼與連接板（B 側）'],
+    ['M5×20 沉頭螺絲',12,UP.m5cs,'床板固定，每塊 6 顆'],
+    ['M6 萬向可調腳杯 Ø40 橡膠底',nLeg,UP.foot,'萬向可以貼合 15° 斜面'],
+    ['M6 薄螺帽',nLeg,UP.nut,'腳杯調好後鎖死'],
+    ['腳料擴孔攻 M6（店家加工）',nLeg,UP.tap,'每支腳一端'],
+    ['20 系列 一字連接板（4 孔）',2,UP.plate,'外側主樑接 A、B'],
+    ['M5 星型把手螺絲（公牙 12 mm）',4,UP.knob,'免工具接合 A、B'],
+    [SHEET[p.board][0],sheets,SHEET[p.board][1],`裁 ${Math.round(LB)}×${p.W} 和 ${Math.round(LA)}×${p.W} 各一塊，倒圓角 R30`],
+    ['魔鬼氈束帶或小棘輪束帶（2 條）',1,UP.strap,'平台綁後廂固定點'],
+    ['毛氈止滑貼',1,UP.felt,'貼平台側面防刮內裝'],
+  ];
+  const aluCost=len20/1000*p.p20+len40/1000*p.p40;
+  const cost=aluCost+hw.reduce((a,h)=>a+h[1]*h[2],0);
   const sleepTop=H+(+thk)+p.mat;
-  return{p,run,top,hinge,surf,B0,B1,A0,A1,H,crossbars,railY,LB,LA,nCB,nLeg,nBr,alu,boardKg,total,modA,modB,defl,cant,sleepTop,
-    head:p.roof-sleepTop,len:A1-B0,store:H-RAIL-CB,thk:+thk,dens};
+  return{p,RAIL,run,top,hinge,surf,B0,B1,A0,A1,H,cbs,yAll,LB,LA,nLeg,nBr,total,mods,defl,sleepTop,
+    head:p.roof-sleepTop,len:A1-B0,store:H-RAIL-20,thk:+thk,hw,aluCost,cost,len20,len40};
 }
 
 /* ---------- readouts ---------- */
 function readouts(c){
+  const alt=calc(Object.assign({},c.p,{rail:c.p.rail==='2040'?'2020':'2040'}));
+  const cheaper=c.cost<=alt.cost;
   const items=[
     ['平台頂高',`${c.H+c.thk} mm`,'後廂地板 → 床板面'],
-    ['睡覺長度',`${Math.round(c.len)} mm`,'尾門 → 前端'],
+    ['睡覺長 × 寬',`${Math.round(c.len)} × ${c.p.W}`,'mm，2 人每人約 '+Math.round(c.p.W/2/10)+' cm',c.p.W<1000],
     ['頭頂剩餘空間',`${Math.round(c.head)} mm`,'床墊面 → 車頂',c.head<450],
-    ['總重',`${c.total.toFixed(1)} kg`,`B ${c.modB.toFixed(1)} / A ${c.modA.toFixed(1)} kg`],
-    ['床下收納高',`${c.store} mm`,'後廂區淨高'],
-    ['主樑下沉',`${c.defl.toFixed(1)} mm`,'80 kg 估算',c.defl>4],
+    ['總重',`${c.total.toFixed(1)} kg`,`B ${c.mods.B.kg.toFixed(1)} / A ${c.mods.A.kg.toFixed(1)} kg`],
+    ['最大下沉',`${c.defl.toFixed(1)} mm`,'80 kg 估算',c.defl>4],
+    ['材料費（不含床墊）',nt(c.cost),`改用 ${alt.p.rail} 主樑：${nt(alt.cost)}${cheaper?'':'（較便宜）'}`,!cheaper],
   ];
   $('readouts').innerHTML=items.map(([a,b,s,w])=>`<div class="ro${w?' warn':''}"><span>${a}</span><b>${b}</b><span>${s}</span></div>`).join('');
 }
 
 /* ---------- side view SVG ---------- */
 function side(c){
-  const p=c.p,pad=40,Wd=1100;const xmax=c.A1+260,zmin=Math.min(p.fw,0)-60,zmax=Math.max(p.roof,c.sleepTop)+40;
+  const p=c.p,pad=40,Wd=1100,RAIL=c.RAIL;const xmax=c.A1+260,zmin=Math.min(p.fw,0)-60,zmax=Math.max(p.roof,c.sleepTop)+40;
   const k=(Wd-pad*2)/xmax;const Ht=(zmax-zmin)*k+pad*2;
-  // car front on left: flip x so tailgate is on right
   const X=x=>Wd-pad-x*k, Z=z=>Ht-pad-(z-zmin)*k;
   const fg=css('--ink'),mu=css('--muted'),ln=css('--line'),ac=css('--accent'),wa=css('--warn'),wo=css('--wood'),al=css('--alu');
   let s=`<svg viewBox="0 0 ${Wd} ${Ht.toFixed(0)}" xmlns="http://www.w3.org/2000/svg" font-family="JetBrains Mono, monospace" font-size="12">`;
-  // car interior
+  s+=`<defs><marker id="a" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><circle cx="5" cy="5" r="2" fill="${fg}"/></marker></defs>`;
   const hx=c.hinge,tx=c.hinge+c.run;
   s+=`<path d="M${X(-30)} ${Z(0)} L${X(hx)} ${Z(0)} L${X(hx)} ${Z(p.step)} L${X(tx)} ${Z(c.top)} L${X(tx+40)} ${Z(c.top-60)} L${X(tx+40)} ${Z(p.fw)} L${X(c.A1+60)} ${Z(p.fw)} L${X(c.A1+60)} ${Z(p.fw-30)} L${X(-30)} ${Z(p.fw-30)} Z" fill="${ln}" fill-opacity=".55" stroke="${mu}" stroke-width="1"/>`;
-  // front seat
   s+=`<rect x="${X(c.A1+200)}" y="${Z(p.roof-120)}" width="${140*k}" height="${(p.roof-120-p.fw)*k}" rx="8" fill="none" stroke="${mu}" stroke-dasharray="4 4"/>`;
   s+=`<text x="${X(c.A1+130)}" y="${Z(p.roof-150)}" fill="${mu}" text-anchor="middle">前座</text>`;
-  // roof line
   s+=`<line x1="${X(-30)}" y1="${Z(p.roof)}" x2="${X(c.A1+60)}" y2="${Z(p.roof)}" stroke="${mu}" stroke-dasharray="6 4"/>`;
   s+=`<text x="${X(c.A1/2)}" y="${Z(p.roof)-6}" fill="${mu}" text-anchor="middle">車頂內襯 ${p.roof}</text>`;
-  // mattress & board
   s+=`<rect x="${X(c.A1)}" y="${Z(c.sleepTop)}" width="${(c.A1-c.B0)*k}" height="${p.mat*k}" fill="${ac}" fill-opacity=".12" stroke="${ac}" stroke-opacity=".5"/>`;
   s+=`<rect x="${X(c.B1)}" y="${Z(c.H+c.thk)}" width="${c.LB*k}" height="${c.thk*k}" fill="${wo}"/>`;
   s+=`<rect x="${X(c.A1)}" y="${Z(c.H+c.thk)}" width="${c.LA*k}" height="${c.thk*k}" fill="${wo}"/>`;
-  // rails
   s+=`<rect x="${X(c.B1)}" y="${Z(c.H)}" width="${c.LB*k}" height="${RAIL*k}" fill="${al}" stroke="${ac}" stroke-width="1.5"/>`;
   s+=`<rect x="${X(c.A1)}" y="${Z(c.H)}" width="${c.LA*k}" height="${RAIL*k}" fill="${al}" stroke="${wa}" stroke-width="1.5"/>`;
-  // crossbars & legs
-  c.crossbars.forEach(cb=>{
-    const col=cb.mod==='B'?ac:wa;
-    s+=`<rect x="${X(cb.x+10)}" y="${Z(c.H-RAIL)}" width="${20*k}" height="${CB*k}" fill="${al}" stroke="${col}"/>`;
-    s+=`<rect x="${X(cb.x+10)}" y="${Z(c.H-RAIL-CB)}" width="${20*k}" height="${cb.L*k}" fill="${al}" stroke="${col}"/>`;
+  c.cbs.forEach(cb=>{
+    const col=cb.mod==='B'?ac:wa;const tp=c.H-RAIL;
+    s+=`<rect x="${X(cb.x+10)}" y="${Z(tp)}" width="${20*k}" height="${cb.h*k}" fill="${al}" stroke="${col}"/>`;
+    s+=`<rect x="${X(cb.x+10)}" y="${Z(tp-cb.h)}" width="${20*k}" height="${cb.L*k}" fill="${al}" stroke="${col}"/>`;
     s+=`<rect x="${X(cb.x+12)}" y="${Z(cb.s+cb.foot)}" width="${24*k}" height="${cb.foot*k}" fill="${fg}" fill-opacity=".7"/>`;
     s+=`<text x="${X(cb.x)}" y="${Z(cb.s)+16}" fill="${col}" text-anchor="middle" font-weight="600">${cb.L}</text>`;
   });
-  // dims
   const dim=(x1,x2,z,label)=>{s+=`<line x1="${X(x1)}" y1="${z}" x2="${X(x2)}" y2="${z}" stroke="${fg}" stroke-width=".8" marker-start="url(#a)" marker-end="url(#a)"/><text x="${(X(x1)+X(x2))/2}" y="${z-5}" fill="${fg}" text-anchor="middle">${label}</text>`};
-  s=s.replace('<svg ',`<svg `)+`<defs><marker id="a" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><circle cx="5" cy="5" r="2" fill="${fg}"/></marker></defs>`;
-  const zt=Z(p.roof)+22;
-  dim(c.B0,c.B1,zt+14,`模組 B ${Math.round(c.LB)}`);
-  dim(c.A0,c.A1,zt+14,`模組 A ${Math.round(c.LA)}`);
-  // height callout
+  const zt=Z(p.roof)+36;
+  dim(c.B0,c.B1,zt,`模組 B ${Math.round(c.LB)}`);
+  dim(c.A0,c.A1,zt,`模組 A ${Math.round(c.LA)}`);
   s+=`<line x1="${X(-20)}" y1="${Z(0)}" x2="${X(-20)}" y2="${Z(c.H+c.thk)}" stroke="${fg}" stroke-width=".8"/>`;
   s+=`<text x="${X(-20)+6}" y="${(Z(0)+Z(c.H))/2}" fill="${fg}">${c.H+c.thk}</text>`;
   s+=`<text x="${X(hx)+6}" y="${Z(p.step)+18}" fill="${mu}">折點 ▲${p.step}</text>`;
@@ -323,88 +364,70 @@ function side(c){
 let orderText='';
 function tables(c){
   const p=c.p;
-  const legGroups={};c.crossbars.forEach(cb=>{const key=cb.L;legGroups[key]=(legGroups[key]||{L:cb.L,n:0,where:new Set()});legGroups[key].n+=3;legGroups[key].where.add(cb.mod==='B'?'模組 B':(cb.x>c.hinge+c.run?'A 前端腳踏區':'模組 A'))});
-  const legs=Object.values(legGroups).sort((a,b)=>b.L-a.L);
-  const nA=c.crossbars.filter(x=>x.mod==='A').length;
+  const price=t=>t==='2040'?p.p40:p.p20;
+  const legG={};c.cbs.forEach(cb=>{const g=legG[cb.L]=legG[cb.L]||{L:cb.L,n:0,where:new Set()};g.n+=cb.ys.length;g.where.add(cb.mod==='B'?'模組 B':(cb.front?'A 前端腳踏區':'模組 A'))});
+  const legs=Object.values(legG).sort((a,b)=>b.L-a.L);
+  const nX=m=>c.cbs.filter(x=>x.mod===m&&!x.front).length;
   const rows=[
-    ['B-R','2040','主樑・模組 B',Math.round(c.LB),3,'兩端銑平'],
-    ['A-R','2040','主樑・模組 A',Math.round(c.LA),3,'兩端銑平'],
-    ['B-X','2020','橫樑・模組 B',p.W,2,''],
-    ['A-X','2020','橫樑・模組 A',p.W,nA,''],
+    ['B-R',p.rail,'主樑・模組 B',Math.round(c.LB),3,''],
+    ['A-R',p.rail,'主樑・模組 A',Math.round(c.LA),3,''],
+    ['B-X','2020','橫樑・模組 B',p.W,nX('B'),''],
+    ['A-X','2020','橫樑・模組 A',p.W,nX('A'),''],
+    ...(p.frontLegs?[['A-XF','2040','前橫樑・立著放（中間不放腳）',p.W,1,'']]:[]),
     ...legs.map((g,i)=>[`L${i+1}`,'2020','腳・'+[...g.where].join('、'),g.L,g.n,'單端擴孔攻 M6'])
   ];
-  const tot=rows.reduce((a,r)=>a+r[3]*r[4],0);
-  $('cut').innerHTML=`<tr><th>代號</th><th>型號</th><th>用途</th><th style="text-align:right">長度 mm</th><th style="text-align:right">數量</th><th>加工</th></tr>`+
-    rows.map(r=>`<tr><td class="mono">${r[0]}</td><td class="mono">${r[1]}</td><td>${r[2]}</td><td class="n">${r[3]}</td><td class="n">${r[4]}</td><td>${r[5]}</td></tr>`).join('')+
-    `<tr><td colspan="3"><b>合計</b>（${rows.reduce((a,r)=>a+r[4],0)} 支、${rows.reduce((a,r)=>a+r[4],0)} 刀）</td><td class="n"><b>${(tot/1000).toFixed(2)} m</b></td><td></td><td></td></tr>`;
-  const sp=n=>Math.ceil(n*1.1);
-  const tn=c.nBr*2+12+8;
-  const [dens,thk]=p.board.split('|');
-  const bname=$('board').selectedOptions[0].text;
-  const hw=[
-    ['20 系列 L 型角碼（2020 角碼）',sp(c.nBr),'橫樑↔主樑、腳↔橫樑，每處 2 個'],
-    ['20 系列 後裝式 T 型螺帽 M5',sp(tn),'彈片式或船型，含床板與連接板用量'],
-    ['M5×10 內六角圓頭螺絲',sp(c.nBr*2+4),'鎖角碼與連接板（B 側）'],
-    ['M5×20 沉頭螺絲',12,'床板固定，每塊 6 顆'],
-    ['M6 萬向可調腳杯 Ø40 橡膠底',c.nLeg,'萬向可以貼合 15° 斜面'],
-    ['M6 薄螺帽',c.nLeg,'腳杯調好後鎖死'],
-    ['20 系列 一字連接板（4 孔）',2,'外側主樑接 A、B'],
-    ['M5 星型把手螺絲（公牙 12 mm）',4,'免工具接合 A、B'],
-    [`床板：${bname}`,2,`${Math.round(c.LB)}×${p.W} 一塊、${Math.round(c.LA)}×${p.W} 一塊，倒圓角 R30`],
-    [`床墊泡棉 ${p.mat} mm`,2,'尺寸同床板'],
-    ['魔鬼氈束帶或小棘輪束帶',2,'平台綁後廂掛勾'],
-    ['毛氈止滑貼',1,'貼平台側面防刮內裝'],
-  ];
-  $('hw').innerHTML=`<tr><th>品項</th><th style="text-align:right">數量</th><th>用途</th></tr>`+hw.map(r=>`<tr><td>${r[0]}</td><td class="n">${r[1]}</td><td>${r[2]}</td></tr>`).join('');
-  const m=tot/1000;
-  const lo=Math.round((m*90+rows.reduce((a,r)=>a+r[4],0)*8+sp(c.nBr)*10+sp(tn)*2.5+c.nLeg*45+300+800)/100)*100;
-  const hi=Math.round((m*160+rows.reduce((a,r)=>a+r[4],0)*15+sp(c.nBr)*18+sp(tn)*4+c.nLeg*80+500+1600)/100)*100;
-  $('cost').innerHTML=`粗估費用（鋁擠＋五金＋床板，不含床墊）：<b class="mono">NT$${lo.toLocaleString()}～${hi.toLocaleString()}</b> <span class="est">估計</span>`;
+  const pcs=rows.reduce((a,r)=>a+r[4],0);
+  $('cut').innerHTML=`<tr><th>代號</th><th>型號</th><th>用途</th><th style="text-align:right">長度 mm</th><th style="text-align:right">數量</th><th style="text-align:right">小計</th><th>加工</th></tr>`+
+    rows.map(r=>`<tr><td class="mono">${r[0]}</td><td class="mono">${r[1]}</td><td>${r[2]}</td><td class="n">${r[3]}</td><td class="n">${r[4]}</td><td class="n">${nt(r[3]/1000*price(r[1])*r[4])}</td><td>${r[5]}</td></tr>`).join('')+
+    `<tr><td colspan="3"><b>合計</b>（${pcs} 支）　2020 共 ${(c.len20/1000).toFixed(2)} m${c.len40?`、2040 共 ${(c.len40/1000).toFixed(2)} m`:''}</td><td></td><td></td><td class="n"><b>${nt(c.aluCost)}</b></td><td></td></tr>`;
+  $('hw').innerHTML=`<tr><th>品項</th><th style="text-align:right">數量</th><th style="text-align:right">單價<span class="est">估計</span></th><th style="text-align:right">小計</th><th>用途</th></tr>`+
+    c.hw.map(r=>`<tr><td>${r[0]}</td><td class="n">${r[1]}</td><td class="n">${nt(r[2])}</td><td class="n">${nt(r[1]*r[2])}</td><td>${r[3]}</td></tr>`).join('');
+  $('cost').innerHTML=`材料費合計（鋁擠＋五金＋床板，不含床墊）：<b class="mono">${nt(c.cost)}</b>，其中鋁擠 ${nt(c.aluCost)}。鋁擠以你的單價計算，其他單價為估計值。`;
+  const merged=Object.values(rows.reduce((a,r)=>{const k=r[1]+'|'+r[3]+'|'+r[5];(a[k]=a[k]||[r[1],r[3],0,r[5]])[2]+=r[4];return a},{}));
   orderText=`您好，想訂 20 系列鋁擠型（6063-T5，銀色），依尺寸裁切：\n`+
-    Object.values(rows.reduce((a,r)=>{const k=r[1]+r[3]+r[5];(a[k]=a[k]||[r[1],r[3],0,r[5]])[2]+=r[4];return a},{})).map(r=>`・${r[0]}  ${r[1]} mm × ${r[2]} 支${r[3]?'（'+r[3]+'）':''}`).join('\n')+
-    `\n\n腳料（${legs.map(g=>g.L).join(' / ')} mm）請在其中一端的中心孔擴孔攻 M6 牙。\n另外加購：\n`+
-    hw.slice(0,8).map(r=>`・${r[0]} × ${r[1]}`).join('\n')+`\n\n裁切公差希望 ±0.5 mm，麻煩報價，謝謝！`;
+    merged.map(r=>`・${r[0]}  ${r[1]} mm × ${r[2]} 支${r[3]?'（'+r[3]+'）':''}`).join('\n')+
+    `\n\n腳料（${legs.map(g=>g.L).join(' / ')} mm）請在其中一端的中心孔擴孔攻 M6 牙；如果不方便，攻 M5 也可以。\n裁切公差希望 ±0.5 mm，不需要端面銑平。麻煩報價，謝謝！`;
   $('orderText').textContent=orderText;
 }
 
 /* ---------- build & install steps ---------- */
 function steps(c){
-  const p=c.p,b=c.crossbars;
-  const bF=b.filter(x=>x.mod==='B'),aF=b.filter(x=>x.mod==='A');
+  const p=c.p,b=c.cbs;
+  const bF=b.filter(x=>x.mod==='B'),aF=b.filter(x=>x.mod==='A'&&!x.front),fr=b.find(x=>x.front);
   const off=(x,base)=>Math.round(x-base);
   const B=[
     ['收到貨先清點、貼標籤','用紙膠帶寫上裁切清單的代號（B-R、A-X、L1…），長度相近的腳最容易混。'],
     ['腳裝上腳杯',`腳杯鎖進腳的 M6 孔，先轉到露出 ${FOOT} mm，再套上薄螺帽，先不要鎖緊。`],
-    ['組橫樑＋腳（一字形）',`橫樑平放在地上，3 支腳立在橫樑下方：兩端各一支（外緣切齊）、正中間一支。每支腳前後各用 1 個角碼鎖到橫樑底面。模組 B 用 ${bF.map(x=>x.L).join('、')} mm 的腳，模組 A 依序用 ${aF.map(x=>x.L).join('、')} mm 的腳（從後往前）。`],
-    ['主樑放上橫樑',`3 支 2040 立著放（40 mm 那面朝上下），左、中、右各一支，壓在橫樑頂面正上方，也就是腳的正上方。模組 B 的橫樑中心距主樑後端 ${off(bF[0].x,c.B0)} mm、${off(bF[1].x,c.B0)} mm；模組 A 的橫樑中心距主樑後端 ${aF.map(x=>off(x.x,c.A0)).join('、')} mm。每個交叉點左右各 1 個角碼。`],
+    ['組橫樑＋腳',`2020 橫樑平放在地上，3 支腳立在橫樑下方：兩端各一支（外緣切齊）、正中間一支。每支腳前後各用 1 個角碼鎖到橫樑底面。模組 B 依序用 ${bF.map(x=>x.L).join('、')} mm 的腳，模組 A 從後往前依序用 ${aF.map(x=>x.L).join('、')} mm 的腳。`+(fr?` 前橫樑是 2040，立著放（40 mm 高），只在左右兩端各裝一支 ${fr.L} mm 的腳，中間不裝。`:'')],
+    ['主樑放上橫樑',`3 支 ${p.rail} 主樑${p.rail==='2040'?'立著放（40 mm 那面朝上下）':''}，左、中、右各一支，壓在橫樑頂面、腳的正上方。模組 B 的橫樑中心距主樑後端 ${bF.map(x=>off(x.x,c.B0)).join('、')} mm；模組 A 的橫樑中心距主樑後端 ${[...aF,...(fr?[fr]:[])].map(x=>off(x.x,c.A0)).join('、')} mm。每個交叉點左右各 1 個角碼。`],
     ['對角線量方正','量框架兩條對角線，相差 2 mm 以內才算方正。不正就鬆開角碼推一下再鎖緊，最後全部螺絲鎖到底。'],
     ['裝 A、B 連接板','一字連接板用 2 顆 M5×10 鎖在模組 B 外側兩支主樑的前端，伸出 40 mm 左右。模組 A 外側主樑對應位置先塞好 T 型螺帽，等一下給星型把手鎖。'],
-    ['進車試裝、調水平','兩塊放進車裡接好，手機水平儀放在主樑上，前後、左右都調到 0°。轉腳杯就能調高低，調好後鎖緊薄螺帽，並在腳杯螺桿上畫線做記號。'],
+    ['進車試裝、調水平','後座滑到最後一格並放倒。先從尾門放 A、推到椅背上，再放 B 接上。手機水平儀放在主樑上，前後、左右都調到 0°。轉腳杯調高低，調好後鎖緊薄螺帽，並在腳杯螺桿上畫線做記號。'],
     ['鎖床板','床板放上去對齊，在三支主樑的位置各鑽 2 個沉頭孔（每塊共 6 個），用 M5×20 沉頭螺絲鎖進主樑頂槽的 T 型螺帽。'],
-    ['加防護並做載重測試','平台外側貼毛氈止滑貼。人躺上去翻身、坐在床尾、跪在接縫上，有晃動就檢查腳杯有沒有著地、角碼有沒有鬆。'],
+    ['加防護並做載重測試','平台外側貼毛氈止滑貼。兩個人一起躺上去翻身、坐在床尾、跪在接縫上，有晃動就檢查腳杯有沒有著地、角碼有沒有鬆。'],
   ];
   $('build').innerHTML=B.map(([h,t])=>`<li><div><h3>${h}</h3><p>${t}</p></div></li>`).join('');
   const I=[
-    '後座電動放倒到底；頭枕若會頂到平台，先拔下來放進收納箱',
-    '前座往前推到底，椅背調直'+(p.frontLegs?'，前端的腳要能落到後座腳踏區':''),
-    '模組 B 從尾門推進去，前端頂到椅背折點、不要壓到',
-    '模組 A 從後車門放上椅背斜面，萬向腳杯自然貼平',
-    '對準連接板，鎖上 4 顆星型把手',
-    '束帶勾住後廂掛勾，拉緊',
+    '後座滑到最後一格（卡到底），再電動放倒到底；頭枕若會頂到平台，先拔下來',
+    '前座往前推到底，椅背調直'+(p.frontLegs?'，讓前端的腳能落到後座腳踏區':''),
+    '模組 A 先從尾門放進去，一路推到椅背斜面上'+(p.frontLegs?'，前端兩支腳落進腳踏區':''),
+    '模組 B 從尾門推進去，前端對準 A 的連接板',
+    '鎖上 4 顆星型把手',
+    '束帶綁到後廂固定點，拉緊',
     '鋪床墊，水平儀快速確認一下',
   ];
-  const R=['收床墊','鬆開束帶','鬆開 4 顆星型把手（留在 A 上，不會掉）','先拿出模組 A，再拉出模組 B','後座立回、頭枕裝回、前座推回原位'];
-  const mk=(id,arr)=>{const st=store.get('rxbed-'+id)||{};$(id).innerHTML=arr.map((t,i)=>`<li><label><input type="checkbox" id="${id}-${i}" ${st[i]?'checked':''}><span>${t}</span></label></li>`).join('');
-    $(id).onchange=e=>{const s=store.get('rxbed-'+id)||{};s[e.target.id.split('-').pop()]=e.target.checked;store.set('rxbed-'+id,s)}};
+  const R=['收床墊','鬆開束帶','鬆開 4 顆星型把手（留在 A 上，不會掉）','先從尾門拉出模組 B，再拉出模組 A','後座立回、頭枕裝回、前座推回原位'];
+  const mk=(id,arr)=>{const st=store.get('rxbed2-'+id)||{};$(id).innerHTML=arr.map((t,i)=>`<li><label><input type="checkbox" id="${id}-${i}" ${st[i]?'checked':''}><span>${t}</span></label></li>`).join('');
+    $(id).onchange=e=>{const s=store.get('rxbed2-'+id)||{};s[e.target.id.split('-').pop()]=e.target.checked;store.set('rxbed2-'+id,s)}};
   mk('installList',I);mk('removeList',R);
 }
-document.querySelectorAll('[data-clear]').forEach(b=>b.onclick=()=>{const id=b.dataset.clear;store.set('rxbed-'+id,{});$(id).querySelectorAll('input').forEach(i=>i.checked=false)});
+document.querySelectorAll('[data-clear]').forEach(b=>b.onclick=()=>{const id=b.dataset.clear;store.set('rxbed2-'+id,{});$(id).querySelectorAll('input').forEach(i=>i.checked=false)});
 
 /* ---------- three.js ---------- */
 let scene,camera,renderer,controls,root,carGroup,boardGroup,modA,modB,explode=false;
 const vis={board:true,car:true};
 function initThree(){
-  if(!window.THREE){$('three').innerHTML='<p style="padding:16px;color:var(--muted)">3D 函式庫沒有載入，請重新整理頁面。下方的側視圖和清單仍可使用。</p>';return false}
+  if(!window.THREE||!THREE.OrbitControls){$('three').innerHTML='<p style="padding:16px;color:var(--muted)">3D 函式庫沒有載入，請重新整理頁面。下方的側視圖和清單仍可使用。</p>';return false}
   const el=$('three');
   scene=new THREE.Scene();
   camera=new THREE.PerspectiveCamera(35,el.clientWidth/el.clientHeight,10,20000);
@@ -412,76 +435,74 @@ function initThree(){
   renderer.setPixelRatio(Math.min(devicePixelRatio,2));
   renderer.setSize(el.clientWidth,el.clientHeight);
   el.appendChild(renderer.domElement);
-  scene.add(new THREE.HemisphereLight(0xffffff,0x667788,0.9));
-  const d=new THREE.DirectionalLight(0xffffff,0.8);d.position.set(-1500,2500,1800);scene.add(d);
+  scene.add(new THREE.HemisphereLight(0xffffff,0x8899aa,1.0));
+  const d=new THREE.DirectionalLight(0xffffff,0.7);d.position.set(-1500,2500,1800);scene.add(d);
   controls=new THREE.OrbitControls(camera,renderer.domElement);controls.enableDamping=true;
   new ResizeObserver(()=>{const w=el.clientWidth,h=el.clientHeight;if(!w||!h)return;camera.aspect=w/h;camera.updateProjectionMatrix();renderer.setSize(w,h)}).observe(el);
   (function loop(){requestAnimationFrame(loop);controls.update();renderer.render(scene,camera)})();
   return true;
 }
-const M=(hex,o={})=>new THREE.MeshStandardMaterial(Object.assign({color:new THREE.Color(hex),metalness:.35,roughness:.55},o));
+const M=(hex,o={})=>new THREE.MeshStandardMaterial(Object.assign({color:new THREE.Color(hex),metalness:.15,roughness:.55},o));
 function box(w,h,d,mat,x,y,z){const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat);m.position.set(x,y,z);return m}
 let firstView=true;
 function build3d(c){
   if(!scene)return;
   if(root)scene.remove(root);
   root=new THREE.Group();scene.add(root);
-  const p=c.p;
-  const alu=M(css('--alu'),{metalness:.6,roughness:.35});
-  const edgeB=M(css('--accent'),{metalness:.4}),edgeA=M(css('--warn'),{metalness:.4});
-  const foot=M('#222'),wood=M(css('--wood'),{metalness:0,roughness:.8});
+  const p=c.p,RAIL=c.RAIL;
+  const alu=M('#c3cbd2');
+  const edgeB=M(css('--accent')),edgeA=M(css('--warn'));
+  const foot=M('#2a2a2a'),wood=M(css('--wood'),{metalness:0,roughness:.85});
   const carM=M(css('--muted'),{transparent:true,opacity:.18,metalness:0,depthWrite:false});
-  // car surfaces (three: x=car length, y=up, z=lateral)
   carGroup=new THREE.Group();root.add(carGroup);
   const cw=p.W+200;
   carGroup.add(box(c.hinge+20,8,cw,carM,(c.hinge-20)/2,-4,0));
-  const sb=box(p.Ls,80,cw,carM,0,0,0);const r=p.ang*Math.PI/180;
-  sb.geometry.translate(p.Ls/2,-40,0);sb.position.set(c.hinge,p.step,0);sb.rotation.z=r;carGroup.add(sb);
+  const sb=box(p.Ls,80,cw,carM,0,0,0);
+  sb.geometry.translate(p.Ls/2,-40,0);sb.position.set(c.hinge,p.step,0);sb.rotation.z=p.ang*Math.PI/180;carGroup.add(sb);
   carGroup.add(box(p.ovh+200,8,cw,carM,c.hinge+c.run+(p.ovh+200)/2,p.fw-4,0));
   carGroup.add(box(120,p.roof-p.fw-100,cw-200,carM,c.A1+120,(p.roof+p.fw-100)/2,0));
   carGroup.visible=vis.car;
-  // modules
   modB=new THREE.Group();modA=new THREE.Group();root.add(modB,modA);
-  const railZ=c.railY;
+  const ys=c.yAll;
   [[modB,c.B0,c.B1,edgeB],[modA,c.A0,c.A1,edgeA]].forEach(([g,x0,x1,em])=>{
-    railZ.forEach(z=>{g.add(box(x1-x0,RAIL,20,alu,(x0+x1)/2,c.H-RAIL/2,z));});
-    g.add(box(x1-x0,3,3,em,(x0+x1)/2,c.H+1,railZ[0]-10));g.add(box(x1-x0,3,3,em,(x0+x1)/2,c.H+1,railZ[2]+10));
+    ys.forEach(z=>g.add(box(x1-x0,RAIL,20,alu,(x0+x1)/2,c.H-RAIL/2,z)));
+    g.add(box(x1-x0,3,3,em,(x0+x1)/2,c.H+1,ys[0]-10));g.add(box(x1-x0,3,3,em,(x0+x1)/2,c.H+1,ys[2]+10));
   });
-  c.crossbars.forEach(cb=>{
-    const g=cb.mod==='B'?modB:modA;
-    g.add(box(20,CB,p.W,alu,cb.x,c.H-RAIL-CB/2,0));
-    railZ.forEach(z=>{
-      const top=c.H-RAIL-CB;
-      g.add(box(20,cb.L,20,alu,cb.x,top-cb.L/2,z));
-      const f=new THREE.Mesh(new THREE.CylinderGeometry(20,20,cb.foot,20),foot);f.position.set(cb.x,top-cb.L-cb.foot/2,z);g.add(f);
+  c.cbs.forEach(cb=>{
+    const g=cb.mod==='B'?modB:modA;const tp=c.H-RAIL;
+    g.add(box(20,cb.h,p.W,alu,cb.x,tp-cb.h/2,0));
+    cb.ys.forEach(z=>{
+      const lt=tp-cb.h;
+      g.add(box(20,cb.L,20,alu,cb.x,lt-cb.L/2,z));
+      const f=new THREE.Mesh(new THREE.CylinderGeometry(20,20,cb.foot,20),foot);f.position.set(cb.x,lt-cb.L-cb.foot/2,z);g.add(f);
     });
   });
   boardGroup=new THREE.Group();
   boardGroup.add(box(c.LB,c.thk,p.W,wood,(c.B0+c.B1)/2,c.H+c.thk/2,0));
   const bA=box(c.LA,c.thk,p.W,wood,(c.A0+c.A1)/2,c.H+c.thk/2,0);bA.userData.A=true;boardGroup.add(bA);
   root.add(boardGroup);boardGroup.visible=vis.board;
-  applyExplode();
-  if(firstView){setView('iso',c);firstView=false}
   root.userData.c=c;
+  applyExplode();
+  if(firstView){setView('iso');firstView=false}
 }
 function applyExplode(){
   if(!modA)return;
   modA.position.set(explode?180:0,explode?140:0,0);
   boardGroup.position.y=explode?260:0;
-  boardGroup.children.forEach(b=>{b.position.x=b.userData.base??(b.userData.base=b.position.x);if(b.userData.A)b.position.x=b.userData.base+(explode?180:0)});
+  boardGroup.children.forEach(b=>{if(b.userData.A){b.userData.base=b.userData.base??b.position.x;b.position.x=b.userData.base+(explode?180:0)}});
 }
-function setView(v,c){
-  c=c||root.userData.c;const cx=(c.B0+c.A1)/2;
+function setView(v){
+  const c=root.userData.c;const cx=(c.B0+c.A1)/2;
   controls.target.set(cx,c.H/2,0);
-  if(v==='side')camera.position.set(cx,c.H/2+60,3400);
-  else camera.position.set(cx-2100,1500,2200);
+  if(v==='side')camera.position.set(cx,c.H/2+60,3600);
+  else camera.position.set(cx-2200,1550,2300);
   camera.lookAt(controls.target);controls.update();
 }
 const tog=(id,fn)=>{$(id).onclick=()=>{const b=$(id);const on=b.getAttribute('aria-pressed')!=='true';b.setAttribute('aria-pressed',on);fn(on)}};
 tog('tExplode',on=>{explode=on;applyExplode()});
 tog('tBoard',on=>{vis.board=on;if(boardGroup)boardGroup.visible=on});
 tog('tCar',on=>{vis.car=on;if(carGroup)carGroup.visible=on});
-$('tSide').onclick=()=>scene&&setView('side');$('tIso').onclick=()=>scene&&setView('iso');
+$('tSide').onclick=()=>root&&setView('side');$('tIso').onclick=()=>root&&setView('iso');
 
 $('copyOrder').onclick=()=>{
   const ok=()=>{$('copyMsg').textContent='已複製'};
@@ -492,12 +513,13 @@ $('copyOrder').onclick=()=>{
 function update(){
   const p=read();
   $('fwRow').hidden=!p.frontLegs;
-  store.set('rxbed-params',Object.assign({},p));
+  store.set(KEY,p);
   const c=calc(p);
   readouts(c);side(c);tables(c);steps(c);build3d(c);
 }
 $('params').addEventListener('input',update);
-$('reset').onclick=()=>{IDS.forEach(k=>$(k).value=DEF[k]);$('frontLegs').checked=true;$('board').selectedIndex=0;update()};
+$('params').addEventListener('change',update);
+$('reset').onclick=()=>{IDS.forEach(k=>$(k).value=DEF[k]);$('frontLegs').checked=true;SELS.forEach(k=>$(k).selectedIndex=0);update()};
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change',update);
 new MutationObserver(update).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
 initThree();update();
